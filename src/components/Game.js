@@ -59,11 +59,24 @@ const Game = () => {
 
 	}, [users])
 
+	useEffect( () => {
+
+		if(socket) {
+			socket.on("GameUpdate", (game) => {
+		      setGame(game);
+		      setLoading(false)
+		    });
+		}
+
+	}, [])
+
 	const handleStartGame = (e) => {
 		e.preventDefault(); 
 		socket.emit('startGame')
 	}
 
+	console.log(game)
+	
 	if(error) {
 		return <Redirect to='/' />
 	}
