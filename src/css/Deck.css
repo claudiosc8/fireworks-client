@@ -1,0 +1,17 @@
+
+
+.deck .number {
+    position: absolute;
+    z-index: 2;
+    font-size: 30px;
+    background: #fff;
+    border-radius: 50px;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 50%;
+    text-align: center;
+
+}

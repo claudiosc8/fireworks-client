@@ -4,6 +4,12 @@ import {useParams, Redirect } from 'react-router-dom'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import Lobby from './Lobby'
 import Card from './Card'
+import Hand from './Hand'
+import Table from './Table'
+import Deck from './Deck'
+import Discard from './Discard'
+import Token from './Token'
+import Hints from './Hints'
 import '../css/Game.css';
 
 let socket;
@@ -16,7 +22,7 @@ const Game = () => {
 	const [currentUser, setCurrentUser] = useState('')
 	const [colors] = useState(['red', 'white', 'blue', 'green', 'yellow'])
 	const [users, setUsers] = useState([]);
-	const [currentPlayer, setCurrentPlayer] = useState({});
+	const [players, setPlayers] = useState([]);
 	const [error, setError] = useState(false)
 	const [loading, setLoading] = useState(true)
 	const [selected, setSelected] = useState(undefined)
@@ -78,10 +84,13 @@ const Game = () => {
 	useEffect( () => {
 
 		if(game.started && currentUser) {
-			const player = game.players.find(player => player.name === currentUser)
-			const copy = Object.assign({}, player)
-			copy.hisTurn = game.currentTurn === copy.order
-      		setCurrentPlayer(copy)
+			let copy = Object.assign([], game.players)
+			const player = copy.find(player => player.name === currentUser)
+			if(player.order !== 0) {
+				const chunk = copy.splice(0, player.order)
+				copy = [...copy, ...chunk]
+			}
+			setPlayers(copy)
 		}
 
 	}, [game, currentUser])
@@ -136,55 +145,81 @@ const Game = () => {
 		return <Lobby users={users} startGame={handleStartGame}/>
 	}
 
-	if(currentPlayer) {
-
-	console.log(game, currentPlayer)
+	if(players.length > 0) {
+	console.log(game, players)
 
 	return (
 
-		<div id="game">
-		{game.cards.hands.map((hand,i) => {
+		<div id="game" className={`number-of-players-${players.length}`}>
 
-			const current = currentPlayer && currentPlayer.order === i;
+		{players.map((player, i) => {
 
-			return (
-			<React.Fragment key={i}>
-			{game.currentTurn === i ? 'current turn' : ''}
-			{(hint.value !== undefined && hint.type !==  undefined && !current) ? 'selectable' : ''}
-			<ul onClick={() => (hint.value !== undefined && hint.type !==  undefined) ? handlePlayHint('hint', i) : null}>
-			{hand.map((card,i) => 
-				<li key={i}>
-				<Card 
-					value={card.value} 
-					color={card.color} 
-					currentPlayer={current} 
-					selected={selected === i}
-					onClick={() => current && currentPlayer.hisTurn ? handleSelect(i) : null}
+			const emptySelection = hint.value === undefined && hint.type ===  undefined
+			const currentTurn = game.currentTurn === player.order;
+
+			return <Hand
+						key={i}
+						currentTurn={currentTurn}
+						className={!emptySelection && i !== 0 ? ' selectable' : ''}
+						cards={game.cards.hands[player.order]}
+						handlePlayHint={() => !emptySelection ? handlePlayHint('hint', i) : null}
+						handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
+						selected={selected}
+						player={i}
+					/>
+
+		})}
+		
+		<div id="playing-area">
+			<div className="row">
+				<Deck 
+					id="remainingCards"
+					title="Remaining Cards" 
+					number={game.cards.deck.length} 
+					distance={.5}
+					unknown
 				/>
-				</li>)
-			}</ul>
-			</React.Fragment>)
 
-		} )}
+				<Deck 
+					id="discardPile"
+					title="Discard Pile" 
+					number={game.cards.discardPile.length} 
+					onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
+					distance={0.5}
+				/>
 
-		<div>Deck: {game.cards.deck.length}</div>
-		<div onClick={() => selected !== undefined ? handlePlayCard('discard') : null}>Discard pile: {game.cards.discardPile.length}</div>
-		<div onClick={() => selected !== undefined ? handlePlayCard('play') : null}>Table: 
-			<ul> 
-				{colors.map((color,i) => <li key={i}>{color}: {game.cards.table[color]}</li>)}
-			</ul>
-		</div>
-		<div>Note tokens: {game.noteTokens}</div>
-		<div>Storm tokens: {game.stormTokens}</div>
-		<div>Hints: 
-			<div>{colors.map((color,i) => <span key={i} onClick={() => currentPlayer.hisTurn ? handleSelectHint('color', color) : null}>{color}{hint.value === color ? 'selected' : ''}</span>)}</div>
-			<div>{colors.map((e,i) => <span key={i} onClick={() => currentPlayer.hisTurn ? handleSelectHint('value', i+1) : null}>{i+1}{hint.value === i ? 'selected' : ''}</span>)}</div>
+			</div>
+			<div className="row">
+			<Table 
+				colors={colors} 
+				onClick={() => selected !== undefined ? handlePlayCard('play') : null}
+				cardsOnTable={game.cards.table}
+			/>
+			</div>
+			<div className="row">
+				<div className="tokens">
+					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={3}/>
+					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={3}/>
+				</div>
+			<Hints 
+				hintColor={(e) => game.currentTurn === players[0].order ? handleSelectHint('color', e) : null}
+				hintValue={(e) => game.currentTurn === players[0].order ? handleSelectHint('value', e) : null}
+				hint={hint}
+				colors={colors}
+			/>
+			</div>
 		</div>
 		</div>
 
 
 		)
+
+	} else {
+		return 'loading'
 	}
+
+
+	
 	}
 
 export default Game

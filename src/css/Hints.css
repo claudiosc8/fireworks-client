@@ -1,0 +1,34 @@
+#hints {
+	max-width:400px;
+	width:100%;
+}
+
+#hints .hint {
+	width:50px;
+	height:50px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:solid 1px #aaa;
+}
+
+.hint[data-color='red'] {
+	background-color: #f44336
+}
+
+.hint[data-color='blue'] {
+	background-color: #03a9f4
+}
+
+.hint[data-color='green'] {
+	background-color:#4caf50
+}
+
+.hint[data-color='yellow'] {
+	background-color: #ffc107
+}
+
+.hint[data-color='white'] {
+	background-color: #78909c
+}

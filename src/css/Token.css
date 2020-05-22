@@ -1,0 +1,10 @@
+.token {
+	width:50px;
+	height:50px;
+	background-color: #aaaaaa;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px #000, inset 0 1px 0 #ffffff55;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
