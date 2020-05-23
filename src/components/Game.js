@@ -83,6 +83,18 @@ const Game = () => {
 
 	useEffect( () => {
 
+		if(socket) {
+			socket.on("DrawCard", (game) => {
+		      setGame(game);
+
+		    });
+		}
+
+	}, [])
+
+
+	useEffect( () => {
+
 		if(game.started && currentUser) {
 			let copy = Object.assign([], game.players)
 			const player = copy.find(player => player.name === currentUser)
@@ -141,7 +153,7 @@ const Game = () => {
 		return error.message
 	}
 
-	if(!game.started) {
+	if(game && !game.started) {
 		return <Lobby users={users} startGame={handleStartGame}/>
 	}
 
@@ -166,6 +178,7 @@ const Game = () => {
 						handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
 						selected={selected}
 						player={i}
+						lastcard={game.drawnCard}
 					/>
 
 		})}

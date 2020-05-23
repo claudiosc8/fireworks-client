@@ -3,10 +3,16 @@ import Card from './Card'
 
 const Table = ({onClick, colors, cardsOnTable}) => {
 
+	const handleDragOver = e => {
+	    e.preventDefault();
+	    e.stopPropagation();
+	    console.log('over')
+	  };
+
 	return (
 
 
-		<div id="table" onClick={onClick}>
+		<div id="table" onClick={onClick} onDragOver={handleDragOver}>
 
 		Table: 
 			<div className='fullwidth flex'> 

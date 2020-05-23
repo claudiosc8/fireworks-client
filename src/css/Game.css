@@ -12,6 +12,8 @@
 	justify-content: center;
 	width: 600px;
     padding: 30px;
+    z-index: 6;
+    flex-direction: row-reverse;
 }
 #game.number-of-players-2 .hand {
 	position: absolute;
