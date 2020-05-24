@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useAnimation } from "framer-motion";
 import Card from './Card'
 
-const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, player, selected, lastcard}) => {
+const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, player, selected, lastcard, index}) => {
 
-	const currentPlayer = player === 0;
+	const currentPlayer = index === 0;
 
 	const controls = useAnimation()
 
@@ -21,33 +21,31 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, play
 
 	return (
 
-			<React.Fragment>
 			
-			<div className={`hand player${player}${className}${currentTurn ? ' currentTurn' : ''}`} onClick={() => handlePlayHint()}>
+			<div className={`hand section player${index}${className}${currentTurn ? ' currentTurn' : ''}`} onClick={() => handlePlayHint()}>
 
-			{cards.map((card,i) => {
-				
-				return (
-	
+			<div className='player-info'>{player.name}</div>
+			<div className={'cards-wrapper'}>
+				{cards.map((card,i) => {
 					
-					<Card 
-						key={i}
-						id={card.id}
-						value={card.value} 
-						color={card.color} 
-						unknown={currentPlayer} 
-						selected={currentPlayer && selected === i}
-						onClick={() => handleSelect(i)}
-						newCard={lastcard && card.id === lastcard.id}
-					/>
+					return (
+		
+						<Card 
+							key={i}
+							id={card.id}
+							value={card.value} 
+							color={card.color} 
+							unknown={currentPlayer} 
+							selected={currentPlayer && selected === i}
+							onClick={() => handleSelect(i)}
+							newCard={lastcard && card.id === lastcard.id}
+						/>
 
-	
-					
-								)}
+					)}
 
-				)
-			}</div>
-			</React.Fragment>
+				)}
+			</div>
+			</div>
 
 	)
 

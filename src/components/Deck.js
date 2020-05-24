@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from './Card'
-import '../css/Deck.css';
+import Empty from './Empty'
 
-const Deck = ({number, id, unknown, onClick, distance}) => {
+
+const Deck = ({number, id, unknown, onClick, distance, className}) => {
 
 	const renderCards = (number) => {
 	    const items = [];
@@ -22,13 +23,11 @@ const Deck = ({number, id, unknown, onClick, distance}) => {
 
 	return (
 
-		<div id={id} className={`deck`} onClick={onClick}>
+		<div id={id} className={`deck${className || ''}`} onClick={onClick}>
 		
 		<div className='relative'>
 			
-			
-			
-			{renderCards(number)}
+			{number > 0 ? renderCards(number) : <Empty />}
 		</div>
 
 		</div>

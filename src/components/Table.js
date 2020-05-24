@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card'
+import Empty from './Empty'
 
 const Table = ({onClick, colors, cardsOnTable}) => {
 
@@ -12,12 +13,13 @@ const Table = ({onClick, colors, cardsOnTable}) => {
 	return (
 
 
-		<div id="table" onClick={onClick} onDragOver={handleDragOver}>
+		<div id="table" onClick={onClick} onDragOver={handleDragOver} className='section'>
 
-		Table: 
-			<div className='fullwidth flex'> 
-			{colors.map((color,i) =>  <Card value={cardsOnTable[color]} color={color} key={i} />)}
-				
+			<div className='fullwidth flex '> 
+			{colors.map((color,i) =>  {
+				return cardsOnTable[color] === 0 ? <Empty key={i} />
+					: <Card value={cardsOnTable[color]} color={color} key={i} />
+			})}
 			</div>
 
 		</div>

@@ -10,7 +10,7 @@ import Deck from './Deck'
 import Discard from './Discard'
 import Token from './Token'
 import Hints from './Hints'
-import '../css/Game.css';
+
 
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
@@ -162,44 +162,27 @@ const Game = () => {
 
 	return (
 
-		<div id="game" className={`number-of-players-${players.length}`}>
+		<div id="game">
 
-		{players.map((player, i) => {
 
-			const emptySelection = hint.value === undefined && hint.type ===  undefined
-			const currentTurn = game.currentTurn === player.order;
-
-			return <Hand
-						key={i}
-						currentTurn={currentTurn}
-						className={!emptySelection && i !== 0 ? ' selectable' : ''}
-						cards={game.cards.hands[player.order]}
-						handlePlayHint={() => !emptySelection ? handlePlayHint('hint', i) : null}
-						handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
-						selected={selected}
-						player={i}
-						lastcard={game.drawnCard}
-					/>
-
-		})}
-		
-		<div id="playing-area">
+		<div id="playing-area" className="half">
+			<div>
 			<div className="row">
 				<Deck 
 					id="remainingCards"
 					title="Remaining Cards" 
 					number={game.cards.deck.length} 
 					distance={.5}
+					className=' section'
 					unknown
 				/>
 
-				<Deck 
-					id="discardPile"
-					title="Discard Pile" 
-					number={game.cards.discardPile.length} 
-					onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
-					distance={0.5}
-				/>
+				<div className="tokens">
+					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={3} className=" note"/>
+					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={3} className=" storm"/>
+				</div>
+
+
 
 			</div>
 			<div className="row">
@@ -210,10 +193,16 @@ const Game = () => {
 			/>
 			</div>
 			<div className="row">
-				<div className="tokens">
-					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={3}/>
-					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={3}/>
-				</div>
+			
+			<Deck 
+				id="discardPile"
+				title="Discard Pile" 
+				number={game.cards.discardPile.length} 
+				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
+				distance={0.5}
+				className=' section grow'
+			/>
+
 			<Hints 
 				hintColor={(e) => game.currentTurn === players[0].order ? handleSelectHint('color', e) : null}
 				hintValue={(e) => game.currentTurn === players[0].order ? handleSelectHint('value', e) : null}
@@ -221,7 +210,32 @@ const Game = () => {
 				colors={colors}
 			/>
 			</div>
+			</div>
 		</div>
+
+		<div id="players-area" className={`number-of-players-${players.length} half`}>
+			{players.map((player, i) => {
+
+				const emptySelection = hint.value === undefined && hint.type ===  undefined
+				const currentTurn = game.currentTurn === player.order;
+
+				return <Hand
+							key={i}
+							currentTurn={currentTurn}
+							className={!emptySelection && i !== 0 ? ' selectable' : ''}
+							cards={game.cards.hands[player.order]}
+							handlePlayHint={() => !emptySelection ? handlePlayHint('hint', i) : null}
+							handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
+							selected={selected}
+							player={player}
+							index={i}
+							lastcard={game.drawnCard}
+						/>
+
+			})}
+		</div>
+
+
 		</div>
 
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { TweenMax } from "gsap/all";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
-import '../css/Card.scss';
+// import '../css/Card.scss';
 
 const Card = ({value, color, id, selected, unknown, onClick, style, className, children, newCard}) => {
 

@@ -1,0 +1,38 @@
+#hints {
+	max-width:400px;
+	width:100%;
+	flex-direction: column;
+}
+
+#hints .hint {
+	width:65px;
+	height:65px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:solid 1px $primary-color;
+	background-color: #fff;
+	box-shadow: 0 6px 0 $primary-color;
+	margin:6px 4px;
+}
+
+#hints .hint[data-color='red'] {
+	background-color: $red;
+}
+
+#hints .hint[data-color='blue'] {
+	background-color: $blue;
+}
+
+#hints .hint[data-color='green'] {
+	background-color:$green;
+}
+
+#hints .hint[data-color='yellow'] {
+	background-color: $yellow;
+}
+
+#hints .hint[data-color='white'] {
+	background-color: $white;
+}

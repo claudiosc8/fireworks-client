@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from './Card'
-import '../css/Token.css';
 
-const Token = ({name, number, id, distance}) => {
+const Token = ({name, number, id, distance, className}) => {
 
 	const renderTokens = (number) => {
 	    const items = [];
@@ -15,7 +14,7 @@ const Token = ({name, number, id, distance}) => {
 
 	return (
 
-		<div id={id} className={`tokens`} >
+		<div id={id} className={`tokens${className}`} >
 		
 		<div className='relative'>
 
