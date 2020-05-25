@@ -15,54 +15,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+
+.card .number {
+	color:$primary-color;
 }
 
 .card {
     box-shadow: inset 0 0 0 5px #fff, 0 1px 0px #00000055;
-    border: solid 1px #dcdcdc;
+    font-size: 70px;
+    color:#fff;
 }
 
 .empty {
     align-items: center;
-	border-style: dashed;
-    border-width: 5px;
-    border-color: $primary-color;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%235553C0FF' stroke-width='10' stroke-dasharray='5 20' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 
-.card[data-color='red'] {
-	background-color: $red
+.card[data-color='red'], .card .hint.color.red {
+	background-color: $red;
+	text-shadow: 0 3px 0 scale-color($red, $lightness: -10%);
 }
 
-.card[data-color='blue'] {
-	background-color: $blue
+.card[data-color='blue'], .card .hint.color.blue {
+	background-color: $blue;
+	text-shadow: 0 3px 0 scale-color($blue, $lightness: -10%);
 }
 
-.card[data-color='green'] {
-	background-color:$green
+.card[data-color='green'], .card .hint.color.green {
+	background-color:$green;
+	text-shadow: 0 3px 0 scale-color($green, $lightness: -10%);
 }
 
-.card[data-color='yellow'] {
-	background-color: $yellow
+.card[data-color='yellow'], .card .hint.color.yellow {
+	background-color: $yellow;
+	text-shadow: 0 3px 0 scale-color($yellow, $lightness: -10%);
 }
 
-.card[data-color='white'] {
-	background-color: $white
+.card[data-color='white'], .card .hint.color.white {
+	background-color: $white;
+	text-shadow: 0 3px 0 scale-color($white, $lightness: -10%);
 }
 
 .card[data-color='unknown'] {
-	background-color:#556;
-	background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
-	linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
-	linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
-	linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
-	linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a),
-	linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
-	background-size:40px 70px;
-	background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+	background-color:scale-color($bg-color, $lightness: -20%);
+	background-image: radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%),
+	radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%);
+	background-size:40px 40px;
+	background-position:0 0, 20px 20px;
 }
 
 .card.selected {
 	transform: translateY(-10px);
+	box-shadow: inset 0 0 0 5px #fff, 0 0 0 2px $yellow,0 15px 30px #29268F;
 }
 
 
@@ -71,7 +77,32 @@
   	animation-duration: 1s;
 }
 
+.card .hint {
+	width: 30px;
+    height: 30px;
+    position: absolute;
+    top:-5px;
+	border-radius: 5px 5px 15px 15px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.5)
+}
+
+.card .hint.color {
+    left: 15px;
+}
+
+.card .hint.value {
+    right: 15px;
+    background: white;
+    color: $primary-color;
+    font-size: 21px;
+    text-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
 @keyframes draw {
-  0% {transform: scale(0)}
-  100% {transform: scale(1)}
+  0% {transform: scale(0);}
+  100% {transform: scale(1);}
 }

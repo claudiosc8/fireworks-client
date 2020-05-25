@@ -116,11 +116,13 @@ const Game = () => {
 	const handleSelect = (i) => {
 		const index = selected === i ? undefined : i
 		setSelected(index)
+		setHint({})
 	}
 
 	const handleSelectHint = (type, value) => {
 		const data = (hint.value === value && hint.type === type) ? {} : {type, value}
 		setHint(data)
+		setSelected(undefined)
 	}
 
 	const handlePlayCard = (type) => {
@@ -129,18 +131,20 @@ const Game = () => {
 			const data = {type, action: selected}
 			socket.emit('playTurn', data)
 			setSelected(undefined)
+			setHint({})
 		} 
 		
 	}
 
 	const handlePlayHint = (type, target) => {
-
+		console.log('target', target)
 		if(type === 'hint') {
 			const action = Object.assign({}, hint)
 			action.target = target;
 			const data = {type, action}
 			socket.emit('playTurn', data)
 			setHint({})
+			setSelected(undefined)
 		}
 		
 	}
@@ -170,16 +174,14 @@ const Game = () => {
 			<div className="row">
 				<Deck 
 					id="remainingCards"
-					title="Remaining Cards" 
-					number={game.cards.deck.length} 
-					distance={.5}
-					className=' section'
+					cards={game.cards.deck} 
+					distance={1}
 					unknown
 				/>
 
-				<div className="tokens">
-					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={3} className=" note"/>
-					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={3} className=" storm"/>
+				<div id="tokens">
+					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={5} className=" note"/>
+					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={5} className=" storm"/>
 				</div>
 
 
@@ -190,6 +192,7 @@ const Game = () => {
 				colors={colors} 
 				onClick={() => selected !== undefined ? handlePlayCard('play') : null}
 				cardsOnTable={game.cards.table}
+				className={selected !== undefined ? ' selectable' : ''}
 			/>
 			</div>
 			<div className="row">
@@ -197,10 +200,10 @@ const Game = () => {
 			<Deck 
 				id="discardPile"
 				title="Discard Pile" 
-				number={game.cards.discardPile.length} 
 				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
-				distance={0.5}
-				className=' section grow'
+				distance={1}
+				className={` section grow${selected !== undefined ? ' selectable' : ''}`}
+				cards={game.cards.discardPile}
 			/>
 
 			<Hints 
@@ -224,7 +227,7 @@ const Game = () => {
 							currentTurn={currentTurn}
 							className={!emptySelection && i !== 0 ? ' selectable' : ''}
 							cards={game.cards.hands[player.order]}
-							handlePlayHint={() => !emptySelection ? handlePlayHint('hint', i) : null}
+							handlePlayHint={() => !emptySelection && i !== 0 ? handlePlayHint('hint', player.order) : null}
 							handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
 							selected={selected}
 							player={player}

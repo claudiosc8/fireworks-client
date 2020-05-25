@@ -60,4 +60,47 @@
     align-content: center;
     display: flex;
     margin: 10px;
+    position: relative;
+    & .title {
+	    position: absolute;
+	    bottom: -30px;
+	    text-transform: uppercase;
+	    color: $primary-color;
+    }
+    &:hover {
+    	border: 10px solid scale-color($primary-color, $lightness: 5%);
+    }
+    &:hover .title {
+    	color: scale-color($primary-color, $lightness: 5%);
+    }
+    &.selectable {
+    	border-color: $selectable;
+    	cursor: pointer;
+    	& .title {
+			color: $selectable;
+		}
+    	&:hover {
+    		border-color: scale-color($selectable, $lightness: 50%);
+	    	background-color: scale-color($bg-color, $lightness: 5%);
+    		& .title {
+				color: scale-color($selectable, $lightness: 50%);
+			}
+    	}
+		
+    }
 }
+
+
+.section.currentTurn {
+    border-color: scale-color($primary-color, $lightness: 90%);
+    box-shadow: 0 15px 30px #29268F;
+
+}
+
+.section.currentTurn .player-info {
+	background-color: scale-color($primary-color, $lightness: 90%);
+	color:$primary-color;
+}
+
+
+

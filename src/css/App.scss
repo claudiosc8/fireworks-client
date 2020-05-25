@@ -4,6 +4,7 @@ body, html, #root {
   height:100vh;
   width:100vw;
   overflow: hidden;
+  font-family: 'Exo', sans-serif;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
 }
 
 .grow {
-  flex: 1 0 auto;
+  flex: 1;
 }
 
 .flex {

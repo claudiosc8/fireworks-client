@@ -33,8 +33,7 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, play
 						<Card 
 							key={i}
 							id={card.id}
-							value={card.value} 
-							color={card.color} 
+							card={card} 
 							unknown={currentPlayer} 
 							selected={currentPlayer && selected === i}
 							onClick={() => handleSelect(i)}

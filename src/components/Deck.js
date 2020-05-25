@@ -3,18 +3,23 @@ import Card from './Card'
 import Empty from './Empty'
 
 
-const Deck = ({number, id, unknown, onClick, distance, className}) => {
+const Deck = ({id, unknown, onClick, distance, className, cards, title}) => {
 
 	const renderCards = (number) => {
 	    const items = [];
 	    for (let i=0; i < number; i++) {
 	    	const style = {top:-i*distance}
+
+
 	        items.push(<Card 
 	        	unknown={unknown} 
 	        	style={style} 
 	        	className={`${i === 0 ? '' : ' absolute'}` } 
-	        	key={i}>
-	        	{i === number-1 && <div className="number">{number}</div>}
+	        	key={i}
+	        	card={cards[i]}
+	        	unknown={unknown}
+	        	>
+	        	{i === number-1 && unknown && <div className="number">{number}</div>}
 	        	</Card>
 	        	);
 	    }
@@ -24,10 +29,10 @@ const Deck = ({number, id, unknown, onClick, distance, className}) => {
 	return (
 
 		<div id={id} className={`deck${className || ''}`} onClick={onClick}>
-		
+		{title && <div className='title'>{title}</div>}
 		<div className='relative'>
 			
-			{number > 0 ? renderCards(number) : <Empty />}
+			{cards.length > 0 ? renderCards(cards.length) : <Empty />}
 		</div>
 
 		</div>

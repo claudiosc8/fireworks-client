@@ -3,7 +3,7 @@ import { TweenMax } from "gsap/all";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
 // import '../css/Card.scss';
 
-const Card = ({value, color, id, selected, unknown, onClick, style, className, children, newCard}) => {
+const Card = ({card, id, selected, unknown, onClick, style, className, children, newCard}) => {
 
 	const [show, setShow] = useState(false)
 	const cardRef = useRef(null)
@@ -25,19 +25,25 @@ const Card = ({value, color, id, selected, unknown, onClick, style, className, c
 	// }, [newCard])
 
 
+
 	return (
 
 			<div className='card-wrapper' id={id}>
-			<span 	
-			className={`card${selected ? ' selected' : ''}${className || ''}${newCard ? ' newCard' : ''}`} 
-			onClick={onClick} 
-			data-color={unknown ? 'unknown' : color} 
-			data-value={unknown ? 'unknown' : value}
-			style={style}
+				{(card || unknown) && <span 	
+				className={`card${selected ? ' selected' : ''}${className || ''}${newCard ? ' newCard' : ''}`} 
+				onClick={onClick} 
+				data-color={unknown ? 'unknown' : card.color} 
+				data-value={unknown ? 'unknown' : card.value}
+				style={style}
 			>
-				{unknown ? '' : value}
-				{children}
-			</span>
+
+					{card.hintColor && <div className={`hint color ${card.color}`} ></div>}
+					{card.hintValue && <div className={`hint value`}>{card.value}</div>}
+					{unknown ? '' : card.value}
+					{children}
+
+				</span>
+				}
 			</div>
 
 		)

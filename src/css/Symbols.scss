@@ -1,0 +1,47 @@
+.symbol:after, .symbol:before {
+	content: '';
+	position: absolute;
+}
+
+.symbol.red:after {
+	width:32px;
+	height:32px;
+	background-color: $red;
+	border-radius: 50%;
+}
+
+.symbol.blue:after {
+	width:28px;
+	height:28px;
+	background-color: $blue;
+}
+
+.symbol.green:after {
+	width:25px;
+	height:25px;
+	background-color: $green;
+	transform: rotate(45deg);
+}
+
+.symbol.yellow:after {
+	width: 0; 
+ 	height: 0; 
+ 	border-left: 15px solid transparent;
+  	border-right: 15px solid transparent;  
+  	border-bottom: 25px solid $yellow;
+  	box-sizing: initial;
+}
+
+.symbol.white:after, .symbol.white:before {
+	width:27px;
+	height:27px;
+	background-color: $white;
+}
+
+.symbol.white:after {
+	transform: scaleX(.5) rotate(45deg);
+}
+
+.symbol.white:before {
+	transform: scaleY(.5) rotate(45deg);
+}
