@@ -1,4 +1,3 @@
-
 .cards-wrapper > .card-wrapper, .empty-wrapper {
 	position:relative;
 	padding:5px;
@@ -18,14 +17,65 @@
 
 }
 
-.card .number {
-	color:$primary-color;
-}
-
 .card {
     box-shadow: inset 0 0 0 5px #fff, 0 1px 0px #00000055;
     font-size: 70px;
     color:#fff;
+    font-weight: 900;
+    &[data-color='unknown'] {
+		background-color:scale-color($bg-color, $lightness: -20%);
+		background-image: radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%),
+		radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%);
+		background-size:40px 40px;
+		background-position:0 0, 20px 20px;
+		& .hint.color {
+			box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+		}
+	}
+	&.newCard {
+		animation-name: draw;
+	  	animation-duration: 1s;
+	}
+	& .number {
+		color:$primary-color;
+	}
+	& .hint {
+		width: 30px;
+	    height: 30px;
+	    position: absolute;
+	    top:-5px;
+		border-radius: 5px 5px 15px 15px;
+	    border: 3px solid #fff;
+	    
+	    &.color{
+			left: 15px;
+	    }
+	    &.value{
+	    	right: 15px;
+		    background: white;
+		    color: $primary-color;
+		    font-size: 21px;
+		    text-shadow: none;
+		    display: flex;
+		    justify-content: center;
+		    align-items:center;
+		    box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+	    }
+	}
+}
+
+@each $name, $color in $colors {
+  .card[data-color=#{$name}] {
+    background-color: $color;
+	text-shadow: 0 3px 0 scale-color($color, $lightness: -10%);
+  }
+}
+
+@each $name, $color in $colors {
+  .card .hint.#{$name} {
+    background-color: $color;
+	box-shadow: 0 2px 3px scale-color($color, $lightness: -20%);
+  }
 }
 
 .empty {
@@ -33,74 +83,14 @@
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%235553C0FF' stroke-width='10' stroke-dasharray='5 20' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 
-.card[data-color='red'], .card .hint.color.red {
-	background-color: $red;
-	text-shadow: 0 3px 0 scale-color($red, $lightness: -10%);
-}
 
-.card[data-color='blue'], .card .hint.color.blue {
-	background-color: $blue;
-	text-shadow: 0 3px 0 scale-color($blue, $lightness: -10%);
-}
-
-.card[data-color='green'], .card .hint.color.green {
-	background-color:$green;
-	text-shadow: 0 3px 0 scale-color($green, $lightness: -10%);
-}
-
-.card[data-color='yellow'], .card .hint.color.yellow {
-	background-color: $yellow;
-	text-shadow: 0 3px 0 scale-color($yellow, $lightness: -10%);
-}
-
-.card[data-color='white'], .card .hint.color.white {
-	background-color: $white;
-	text-shadow: 0 3px 0 scale-color($white, $lightness: -10%);
-}
-
-.card[data-color='unknown'] {
-	background-color:scale-color($bg-color, $lightness: -20%);
-	background-image: radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%),
-	radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%);
-	background-size:40px 40px;
-	background-position:0 0, 20px 20px;
-}
-
-.card.selected {
+.card-wrapper.selected {
 	transform: translateY(-10px);
-	box-shadow: inset 0 0 0 5px #fff, 0 0 0 2px $yellow,0 15px 30px #29268F;
+	& .card {
+	 	box-shadow: inset 0 0 0 5px #fff, 0 0 0 2px $yellow,0 15px 30px #29268F;
+	}
 }
 
-
-.card.newCard {
-	animation-name: draw;
-  	animation-duration: 1s;
-}
-
-.card .hint {
-	width: 30px;
-    height: 30px;
-    position: absolute;
-    top:-5px;
-	border-radius: 5px 5px 15px 15px;
-    border: 3px solid #fff;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.5)
-}
-
-.card .hint.color {
-    left: 15px;
-}
-
-.card .hint.value {
-    right: 15px;
-    background: white;
-    color: $primary-color;
-    font-size: 21px;
-    text-shadow: none;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
 
 @keyframes draw {
   0% {transform: scale(0);}

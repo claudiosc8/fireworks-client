@@ -28,9 +28,9 @@ const Card = ({card, id, selected, unknown, onClick, style, className, children,
 
 	return (
 
-			<div className='card-wrapper' id={id}>
+			<div className={`card-wrapper${selected ? ' selected' : ''}`} id={id}>
 				{(card || unknown) && <span 	
-				className={`card${selected ? ' selected' : ''}${className || ''}${newCard ? ' newCard' : ''}`} 
+				className={`card${className || ''}${newCard ? ' newCard' : ''}`} 
 				onClick={onClick} 
 				data-color={unknown ? 'unknown' : card.color} 
 				data-value={unknown ? 'unknown' : card.value}

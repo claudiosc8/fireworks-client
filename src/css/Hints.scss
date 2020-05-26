@@ -16,25 +16,16 @@
 	box-shadow: 0 6px 0 $primary-color;
 	margin:6px 4px;
 	color:$primary-color;
-	font-size:25px
+	font-size:25px;
+	font-weight: 700;
+	&.selected {
+		box-shadow: 0 1px 0 $primary-color;
+		transform: translateY(5px);
+	}
 }
 
-#hints .hint[data-color='red'] {
-	background-color: $red;
-}
-
-#hints .hint[data-color='blue'] {
-	background-color: $blue;
-}
-
-#hints .hint[data-color='green'] {
-	background-color:$green;
-}
-
-#hints .hint[data-color='yellow'] {
-	background-color: $yellow;
-}
-
-#hints .hint[data-color='white'] {
-	background-color: $white;
-}
+// @each $name, $color in $colors {
+//   #hints .hint.#{$name} {
+//     background-color: $color;
+//   }
+// }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,900;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400;700;900&display=swap');
 
 $bg-color: #4946A1;
 $primary-color: #5553C0;
@@ -9,3 +9,50 @@ $green: #8BC34A;
 $white: #D5D5D5;
 $note: #80cbc4;
 $selectable: #8c9eff;
+
+$colors:
+  "red" $red,
+  "blue" $blue,
+  "yellow" $yellow,
+  "white" $white,
+  "green" $green;
+
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}

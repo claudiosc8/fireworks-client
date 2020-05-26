@@ -46,61 +46,66 @@
     border-radius: 30px;
     text-transform: uppercase;
     color: white;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     display: flex;
     align-content: center;
     justify-content: center;
+    font-weight: 700;
 }
 
 .section {
-	border: 10px solid $primary-color;
-    border-radius: 20px;
-	padding:15px;
+	padding:15px 25px;
 	justify-content: center;
     align-content: center;
     display: flex;
     margin: 10px;
     position: relative;
-    & .title {
-	    position: absolute;
-	    bottom: -30px;
-	    text-transform: uppercase;
-	    color: $primary-color;
-    }
-    &:hover {
-    	border: 10px solid scale-color($primary-color, $lightness: 5%);
-    }
-    &:hover .title {
-    	color: scale-color($primary-color, $lightness: 5%);
-    }
-    &.selectable {
-    	border-color: $selectable;
-    	cursor: pointer;
-    	& .title {
-			color: $selectable;
-		}
-    	&:hover {
-    		border-color: scale-color($selectable, $lightness: 50%);
-	    	background-color: scale-color($bg-color, $lightness: 5%);
-    		& .title {
-				color: scale-color($selectable, $lightness: 50%);
+    &.border {
+    	padding:15px;
+		border: 10px solid $primary-color;
+	    border-radius: 20px;
+	    & .title {
+		    position: absolute;
+		    bottom: -30px;
+		    left:15px;
+		    text-transform: uppercase;
+		    color: $primary-color;
+		    font-weight: 700;
+	    }
+	    &:hover {
+	    	border: 10px solid scale-color($primary-color, $lightness: 5%);
+	    	& .player-info {
+		    	background-color: scale-color($primary-color, $lightness: 5%);
+		    }
+	    }
+	    &:hover .title {
+	    	color: scale-color($primary-color, $lightness: 5%);
+	    }
+	    &.selectable {
+	    	border-color: $selectable;
+	    	cursor: pointer;
+	    	& .title {
+				color: $selectable;
 			}
-    	}
-		
-    }
+	    	&:hover {
+	    		border-color: scale-color($selectable, $lightness: 50%);
+		    	background-color: scale-color($bg-color, $lightness: 5%);
+	    		& .title {
+					color: scale-color($selectable, $lightness: 50%);
+				}
+	    	}
+	    }
+	    &.currentTurn {
+	    border-color: scale-color($primary-color, $lightness: 90%);
+	    box-shadow: 0 15px 30px #29268F;
+		    & .player-info {
+		    	background-color: scale-color($primary-color, $lightness: 90%);
+				color:$primary-color;
+		    }
+		}
+	}
 }
 
-
-.section.currentTurn {
-    border-color: scale-color($primary-color, $lightness: 90%);
-    box-shadow: 0 15px 30px #29268F;
-
-}
-
-.section.currentTurn .player-info {
-	background-color: scale-color($primary-color, $lightness: 90%);
-	color:$primary-color;
-}
 
 
 

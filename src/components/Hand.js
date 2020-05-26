@@ -22,7 +22,7 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, play
 	return (
 
 			
-			<div className={`hand section player${index}${className}${currentTurn ? ' currentTurn' : ''}`} onClick={() => handlePlayHint()}>
+			<div className={`hand section border player${index}${className}${currentTurn ? ' currentTurn' : ''}`} onClick={() => handlePlayHint()}>
 
 			<div className='player-info'>{player.name}</div>
 			<div className={'cards-wrapper'}>

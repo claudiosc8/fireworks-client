@@ -10,7 +10,8 @@ import Deck from './Deck'
 import Discard from './Discard'
 import Token from './Token'
 import Hints from './Hints'
-
+import Log from './Log'
+import GameOver from './GameOver'
 
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
@@ -166,25 +167,28 @@ const Game = () => {
 
 	return (
 
-		<div id="game">
+		<React.Fragment>
+		<Log messages={game.log} />
 
+		{ game.gameOver && <GameOver score={game.score} result={game.result} stormTokens={game.stormTokens} /> }
+		<div id="game">
 
 		<div id="playing-area" className="half">
 			<div>
 			<div className="row">
+
 				<Deck 
 					id="remainingCards"
 					cards={game.cards.deck} 
 					distance={1}
 					unknown
+					className=' section'
 				/>
 
-				<div id="tokens">
+				<div id="tokens" className='section'>
 					<Token id={'note'} name={'Note tokens'} number={game.noteTokens} distance={5} className=" note"/>
 					<Token id={'storm'} name={'Storm tokens'} number={game.stormTokens} distance={5} className=" storm"/>
 				</div>
-
-
 
 			</div>
 			<div className="row">
@@ -202,13 +206,13 @@ const Game = () => {
 				title="Discard Pile" 
 				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
 				distance={1}
-				className={` section grow${selected !== undefined ? ' selectable' : ''}`}
+				className={` section border grow${selected !== undefined ? ' selectable' : ''}`}
 				cards={game.cards.discardPile}
 			/>
 
 			<Hints 
-				hintColor={(e) => game.currentTurn === players[0].order ? handleSelectHint('color', e) : null}
-				hintValue={(e) => game.currentTurn === players[0].order ? handleSelectHint('value', e) : null}
+				hintColor={(e) => !game.gameOver && game.currentTurn === players[0].order && game.noteTokens > 0 ? handleSelectHint('color', e) : null}
+				hintValue={(e) => !game.gameOver && game.currentTurn === players[0].order && game.noteTokens > 0 ? handleSelectHint('value', e) : null}
 				hint={hint}
 				colors={colors}
 			/>
@@ -227,8 +231,8 @@ const Game = () => {
 							currentTurn={currentTurn}
 							className={!emptySelection && i !== 0 ? ' selectable' : ''}
 							cards={game.cards.hands[player.order]}
-							handlePlayHint={() => !emptySelection && i !== 0 ? handlePlayHint('hint', player.order) : null}
-							handleSelect={(e) => i === 0 && currentTurn ? handleSelect(e) : null}
+							handlePlayHint={() => !game.gameOver && !emptySelection && i !== 0 && game.noteTokens > 0 ? handlePlayHint('hint', player.order) : null}
+							handleSelect={(e) => !game.gameOver && i === 0 && currentTurn ? handleSelect(e) : null}
 							selected={selected}
 							player={player}
 							index={i}
@@ -240,7 +244,7 @@ const Game = () => {
 
 
 		</div>
-
+		</React.Fragment>
 
 		)
 
