@@ -27,14 +27,51 @@
   top: 0;
   bottom: 0;
   margin: auto;
-  max-height: 330px;
+  max-height: 300px;
   opacity: 1;
   transition: all 1s ease;
+}
+
+.popup-wrapper .popup .popup-inner {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 20px;
 }
 
 #fireworks {
   width:100%;
   height:100%;
   position: absolute;
-  z-index: 11;
+  z-index: 2;
+}
+
+.popup .score {
+  background-color: $primary-color;
+  padding:10px 30px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  position: absolute;
+  top:-30px;
+  font-size:24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.popup .result {
+  padding: 20px 0;
+  font-size: 21px
+}
+
+.popup .stars {
+  display: flex;
+  justify-content: center;
+  & img {
+    width:14%;
+    margin: 0 5px;
+  }
 }

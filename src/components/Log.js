@@ -15,9 +15,6 @@ const Log = ({messages, className}) => {
 			<ScrollToBottom>
 			<div className='relative'>
 
-			
-						
-				
 				<ul> 
 					{messages && messages.map((message,i) =>  {
 						return <li key={i}>

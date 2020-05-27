@@ -170,7 +170,7 @@ const Game = () => {
 		<React.Fragment>
 		<Log messages={game.log} />
 
-		{ game.gameOver && <GameOver score={game.score} result={game.result} stormTokens={game.stormTokens} /> }
+		{ true && <GameOver score={game.score} result={game.result} stormTokens={game.stormTokens} /> }
 		<div id="game">
 
 		<div id="playing-area" className="half">
