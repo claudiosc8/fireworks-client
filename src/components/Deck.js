@@ -17,7 +17,6 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title}) => {
 	        	className={`${i === 0 ? '' : ' absolute'}` } 
 	        	key={i}
 	        	card={cards[i]}
-	        	unknown={unknown}
 	        	>
 	        	{i === number-1 && unknown && <div className="number">{number}</div>}
 	        	</Card>

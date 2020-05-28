@@ -3,115 +3,108 @@
   display: inline-block;
   cursor: pointer;
   margin-bottom:10px;
-}
-
-.button-inner {
-  background-color: $primary-color;
-  padding: 15px 25px;
-  border-radius:10px;
-  color: #fff;
-  text-transform: uppercase;
-  display: inline-block;
-  text-decoration: none;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  border: none;
-  margin: 0;
-  cursor: pointer;
-  font-family: 'Exo', sans-serif;
-  box-shadow: 0 5px 0 scale-color($primary-color, $lightness: 50%);
-}
-
-.button-inner:focus {
-    outline: none
-}
-
-.button-inner:hover {
-  background-color: scale-color($primary-color, $lightness: 5%);
-}
-
-.button-inner:active {
-  background-color: scale-color($primary-color, $lightness: -20%);
-}
-
-.button-inner svg {
-  margin-left:10px;
-}
-
-.button-outer.empty .button-inner {
-  width:100%;
-  height:100%;
-  padding: 0;
-}
-
-.button-outer.fullwidth .button-inner {
-  width:100%;
-  padding-right:5px;
-  padding-left: 5px;
-}
-
-.button-outer.outline .button-inner {
-  background-image: none;
-  box-shadow: none;
-  background-color: transparent;
-  padding-top:17px;
-  padding-bottom: 17px;
-  text-shadow: none;
-}
-
-.button-outer.outline:hover {
-  background-color: #4527a0;
-}
-
-.close-btn {
-  width:60px;
-  height:60px;
-  position: absolute;
-  right:-30px;
-  top:-30px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-
-.close-btn:after, .close-btn:before {
-  content: '';
-  width:2px;
-  height:20px;
-  background-color: #fff;
-  position: absolute;
-  top: 19px;
-  left: 29px;
-  border-radius: 5px
-}
-
-.close-btn:after {
-  transform: rotate(45deg);
-}
-
-.close-btn:before {
-  transform: rotate(-45deg);
-}
-
-.button-outer.empty.icon-only {
-  width:60px;
-  height:60px;
-}
-
-.button-outer.empty.icon-only .button-inner svg {
-    font-size: 26px;
+  & .button-inner {
+    background-color: $primary-color;
+    padding: 15px 25px;
+    border-radius:10px;
+    color: #fff;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
     text-align: center;
-    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: none;
     margin: 0;
-}
-
-.button-outer.disabled .button-inner {
+    cursor: pointer;
+    font-family: 'Exo', sans-serif;
+    box-shadow: 0 5px 0 scale-color($primary-color, $lightness: 50%);
+    &:focus {
+      outline: none
+    }
+    &:hover {
+      background-color: scale-color($primary-color, $lightness: 5%);
+    }
+    &:active {
+      background-color: scale-color($primary-color, $lightness: -20%);
+    }
+    & svg {
+      margin-left:10px;
+    }
+  }
+  &.empty {
+    padding: 0;
+    & .button-inner {
+      width:100%;
+      height:100%;
+      padding: 0;
+      border-radius: 50%;
+    }
+    &.close-btn {
+      width:40px;
+      height:40px;
+      position: absolute;
+      right:0;
+      top:0;
+      cursor: pointer;
+      & .button-inner {
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+      }
+      &:after, &:before {
+        content: '';
+        width:2px;
+        height:20px;
+        background-color: $primary-color;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        border-radius: 5px;
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+      &:before {
+        transform: rotate(-45deg);
+      }
+    }
+    &.icon-only {
+      width:50px;
+      height:50px;
+      & .button-inner svg {
+          font-size: 26px;
+          text-align: center;
+          padding: 0;
+          margin: 0;
+      }
+    }
+  }
+  &.fullwidth .button-inner {
+    width:100%;
+    padding-right:5px;
+    padding-left: 5px;
+  } 
+  &.outline {
+    & .button-inner {
+      background-image: none;
+      box-shadow: none;
+      background-color: transparent;
+      padding-top:17px;
+      padding-bottom: 17px;
+      text-shadow: none;
+    }
+    &:hover {
+      background-color: #4527a0;
+    }
+  }
+  &.disabled .button-inner {
     background-color: #1d2350;
     background-image: none;
     color: #909090;
     text-shadow: none;
     box-shadow: none;
     cursor: default;
+  }
 }

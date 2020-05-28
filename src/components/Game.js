@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import io from 'socket.io-client';
 import {useParams, Redirect } from 'react-router-dom'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import Lobby from './Lobby'
-import Card from './Card'
 import Hand from './Hand'
 import Table from './Table'
 import Deck from './Deck'
-import Discard from './Discard'
 import Token from './Token'
 import Hints from './Hints'
 import Log from './Log'
@@ -126,10 +123,21 @@ const Game = () => {
 		setSelected(undefined)
 	}
 
-	const handlePlayCard = (type) => {
+	// const handlePlayCard = (type) => {
+
+	// 	if(type === 'discard' || type === 'play') {
+	// 		const data = {type, action: selected}
+	// 		socket.emit('playTurn', data)
+	// 		setSelected(undefined)
+	// 		setHint({})
+	// 	} 
+		
+	// }
+
+	const handlePlayCard = (type, index) => {
 
 		if(type === 'discard' || type === 'play') {
-			const data = {type, action: selected}
+			const data = {type, action: index || selected}
 			socket.emit('playTurn', data)
 			setSelected(undefined)
 			setHint({})
@@ -170,7 +178,8 @@ const Game = () => {
 		<React.Fragment>
 		<Log messages={game.log} />
 
-		{ true && <GameOver score={game.score} result={game.result} stormTokens={game.stormTokens} /> }
+		{ game.gameOver && <GameOver score={game.score} result={game.result} gameover={game.stormTokens === 0} /> }
+
 		<div id="game">
 
 		<div id="playing-area" className="half">
@@ -202,7 +211,7 @@ const Game = () => {
 			<div className="row">
 			
 			<Deck 
-				id="discardPile"
+				id="discard"
 				title="Discard Pile" 
 				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
 				distance={1}
@@ -237,6 +246,8 @@ const Game = () => {
 							player={player}
 							index={i}
 							lastcard={game.drawnCard}
+							handlePlayCard={handlePlayCard}
+							deselect={() => setSelected(undefined)}
 						/>
 
 			})}

@@ -7,8 +7,6 @@ import confetti from 'canvas-confetti';
      useEffect(() => {
 
         let c = ref.current;
-        let ctx = c.getContext('2d');
-       
        	const myConfetti = confetti.create(c, { resize: true });
 
        	const colors = ['#03A9F4', '#F44336', '#FFC107', '#8BC34A', ' #D5D5D5']
@@ -33,7 +31,7 @@ import confetti from 'canvas-confetti';
 			    return clearInterval(interval);
 			  }
 
-			  const particleCount = 100;
+			  const particleCount = 90;
 
 			  myConfetti(Object.assign({}, defaults, { colors: [colors[getRandomInt(0,4)]], shapes, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
 			  myConfetti(Object.assign({}, defaults, { colors: [colors[getRandomInt(0,4)]], shapes, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));

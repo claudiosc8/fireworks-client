@@ -1,4 +1,4 @@
-.cards-wrapper > .card-wrapper, .empty-wrapper {
+.cards-wrapper .card-wrapper, .empty-wrapper {
 	position:relative;
 	padding:5px;
 }
@@ -31,10 +31,6 @@
 		& .hint.color {
 			box-shadow: 0 2px 3px rgba(0,0,0,0.5);
 		}
-	}
-	&.newCard {
-		animation-name: draw;
-	  	animation-duration: 1s;
 	}
 	& .number {
 		color:$primary-color;
@@ -87,12 +83,18 @@
 .card-wrapper.selected {
 	transform: translateY(-10px);
 	& .card {
-	 	box-shadow: inset 0 0 0 5px #fff, 0 0 0 2px $yellow,0 15px 30px #29268F;
+	 	box-shadow: inset 0 0 0 5px #fff, 0 0 0 3px $selected,0 15px 30px #29268F;
+	}
+}
+
+.card-wrapper.dragging {
+	& .card {
+	 	box-shadow: inset 0 0 0 5px #fff, 0 15px 30px #29268F;
 	}
 }
 
 
-@keyframes draw {
-  0% {transform: scale(0);}
-  100% {transform: scale(1);}
-}
+// @keyframes draw {
+//   0% {transform: scale(0);}
+//   100% {transform: scale(1);}
+// }

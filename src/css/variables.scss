@@ -9,6 +9,7 @@ $green: #8BC34A;
 $white: #D5D5D5;
 $note: #80cbc4;
 $selectable: #8c9eff;
+$selected: #00c853;
 
 $colors:
   "red" $red,
@@ -30,7 +31,6 @@ $colors:
   @if $index {
     @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
-
   @return $string;
 }
 
@@ -55,4 +55,9 @@ $colors:
     scrollbar-face-color: $foreground-color;
     scrollbar-track-color: $background-color;
   }
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
 }

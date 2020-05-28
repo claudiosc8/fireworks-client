@@ -11,16 +11,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border:solid 1px $primary-color;
 	background-color: #fff;
-	box-shadow: 0 6px 0 $primary-color;
+	box-shadow: 0 6px 0 $primary-color, 0 0 0 1px $primary-color;
 	margin:6px 4px;
 	color:$primary-color;
 	font-size:25px;
 	font-weight: 700;
 	&.selected {
-		box-shadow: 0 1px 0 $primary-color;
-		transform: translateY(5px);
+		box-shadow: 0 0 0 4px $selected;
+		transform: translateY(-5px);
 	}
 }
 

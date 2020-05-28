@@ -1,34 +1,11 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { TweenMax } from "gsap/all";
-import { motion, useMotionValue, AnimatePresence } from "framer-motion";
-// import '../css/Card.scss';
-
-const Card = ({card, id, selected, unknown, onClick, style, className, children, newCard}) => {
-
-	const [show, setShow] = useState(false)
-	const cardRef = useRef(null)
-
-	useEffect( () => {
-		setShow(true)
-
-	}, [])
-
-	// useEffect( () => {
-	// 	if(newCard) {
-	// 		const deck = document.getElementById('remainingCards');
-	// 		const card = document.getElementById(id);
-	// 		const deckBounds = deck.getBoundingClientRect();
-	// 		const cardBounds = card.getBoundingClientRect();
-	// 		const d = {y: deckBounds.top-cardBounds.top, x:deckBounds.left-cardBounds.left}
-	// 		TweenMax.from('#'+id, 2, {yPercent:d.y, yPercent:d.x});
-	// 	}
-	// }, [newCard])
+import React from 'react';
 
 
+const Card = ({card, id, selected, unknown, onClick, style, className, children, newCard, dragging}) => {
 
 	return (
 
-			<div className={`card-wrapper${selected ? ' selected' : ''}`} id={id}>
+			<div className={`card-wrapper${selected ? ' selected' : ''}${dragging ? ' dragging' : ''}`} id={id}>
 				{(card || unknown) && <span 	
 				className={`card${className || ''}${newCard ? ' newCard' : ''}`} 
 				onClick={onClick} 

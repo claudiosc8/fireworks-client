@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+#table {
+	flex:1;
+	justify-content: center
+}
 .hand {
 	display: flex;
 	justify-content: center;
@@ -87,7 +91,7 @@
 	    	& .title {
 				color: $selectable;
 			}
-	    	&:hover {
+	    	&:hover, &.droppable {
 	    		border-color: scale-color($selectable, $lightness: 50%);
 		    	background-color: scale-color($bg-color, $lightness: 5%);
 	    		& .title {
