@@ -11,15 +11,16 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title}) => {
 	    	const style = {top:-i*distance}
 
 
-	        items.push(<Card 
-	        	unknown={unknown} 
-	        	style={style} 
-	        	className={`${i === 0 ? '' : ' absolute'}` } 
-	        	key={i}
-	        	card={cards[i]}
-	        	>
-	        	{i === number-1 && unknown && <div className="number">{number}</div>}
-	        	</Card>
+	        items.push(
+	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } >
+		        	<Card 
+		        	unknown={unknown} 
+		        	key={i}
+		        	card={cards[i]}
+		        	>
+		        	{i === number-1 && unknown && <div className="number">{number}</div>}
+		        	</Card>
+	        	</div>
 	        	);
 	    }
 	    return items;

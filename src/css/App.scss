@@ -1,7 +1,8 @@
 body, html, #root {
   margin: 0;
   padding: 0;
-  height:100vh;
+  min-height:100vh;
+  height: 100%;
   width:100vw;
   overflow: hidden;
   font-family: 'Exo', sans-serif;
@@ -48,3 +49,8 @@ body {
   display: flex;
 }
 
+@media only screen and (max-width: 970px) {
+  body, html, #root {
+    overflow-y: scroll;
+  }
+}

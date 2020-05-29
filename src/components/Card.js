@@ -5,13 +5,14 @@ const Card = ({card, id, selected, unknown, onClick, style, className, children,
 
 	return (
 
-			<div className={`card-wrapper${selected ? ' selected' : ''}${dragging ? ' dragging' : ''}`} id={id}>
-				{(card || unknown) && <span 	
+
+			<span 	
 				className={`card${className || ''}${newCard ? ' newCard' : ''}`} 
 				onClick={onClick} 
 				data-color={unknown ? 'unknown' : card.color} 
 				data-value={unknown ? 'unknown' : card.value}
 				style={style}
+				id={id}
 			>
 
 					{card.hintColor && <div className={`hint color ${card.color}`} ></div>}
@@ -20,8 +21,8 @@ const Card = ({card, id, selected, unknown, onClick, style, className, children,
 					{children}
 
 				</span>
-				}
-			</div>
+				
+
 
 		)
 }

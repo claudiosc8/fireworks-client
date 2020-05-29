@@ -19,7 +19,7 @@
     margin: 0;
     cursor: pointer;
     font-family: 'Exo', sans-serif;
-    box-shadow: 0 5px 0 scale-color($primary-color, $lightness: 50%);
+    box-shadow: 0 2px 0 scale-color($primary-color, $lightness: 50%);
     &:focus {
       outline: none
     }
@@ -48,6 +48,7 @@
       right:0;
       top:0;
       cursor: pointer;
+      z-index: 5;
       & .button-inner {
         border-radius: 0;
         background-color: transparent;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import Card from './Card'
 
-const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, handlePlayCard, player, selected, lastcard, index, deselect}) => {
+const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, handlePlayCard, player, selected, lastcard, index, deselect, playable}) => {
 
 	const [hand, setHand] = useState([])
 
@@ -93,7 +93,9 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, hand
 			<div className='player-info'>{player.name}</div>
 			<div className={'cards-wrapper'}>
 				{hand.map((card,i) => {
-					
+						
+					const isSelected = currentPlayer && Number(selected) === Number(i);
+
 					return (
 
 							<motion.div 
@@ -101,15 +103,15 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, hand
 								positionTransition={{transition:1}} 
 								dragConstraints={{ left:0, right:0, top:0, bottom:0 }}
 								animate={{ scale: 1, transition: .2 }} 
-								whileHover={{ scale: 1.03, transition: .2 }}
+								whileHover={playable && { scale: 1.03, transition: .2 }}
 								initial={{ scale:0 }} 
-								drag={currentPlayer && currentTurn}
+								drag={playable}
 								onDragStart={(event, info) => onDragStart(event, info, i)}
 							  	onDrag={(event, info) => onDrag(event, info)}
 							  	onDragEnd={(event, info) => onDragEnd(event, info, i)}
 							  	dragElastic={1}
 							  	style={{zIndex: isDragging === i ? 1 : 0}}
-							  	className={isDragging === i ? 'dragging' : ''}
+							  	className={`card-wrapper${isDragging === i ? ' dragging' : ''}${isSelected ? ' selected' : ''}`}
 							>
 	{						<Card 
 								id={card.id}

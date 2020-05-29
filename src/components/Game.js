@@ -176,14 +176,13 @@ const Game = () => {
 	return (
 
 		<React.Fragment>
-		<Log messages={game.log} />
 
-		{ game.gameOver && <GameOver score={game.score} result={game.result} gameover={game.stormTokens === 0} /> }
+		{ game.gameOver && <GameOver score={game.score} result={game.result} gameover={game.stormTokens === 0} handleStartGame={handleStartGame} /> }
 
 		<div id="game">
 
-		<div id="playing-area" className="half">
-			<div>
+		<div id="playing-area">
+			<div className="content">
 			<div className="row">
 
 				<Deck 
@@ -229,7 +228,7 @@ const Game = () => {
 			</div>
 		</div>
 
-		<div id="players-area" className={`number-of-players-${players.length} half`}>
+		<div id="players-area" className={`number-of-players-${players.length}`}>
 			{players.map((player, i) => {
 
 				const emptySelection = hint.value === undefined && hint.type ===  undefined
@@ -242,6 +241,7 @@ const Game = () => {
 							cards={game.cards.hands[player.order]}
 							handlePlayHint={() => !game.gameOver && !emptySelection && i !== 0 && game.noteTokens > 0 ? handlePlayHint('hint', player.order) : null}
 							handleSelect={(e) => !game.gameOver && i === 0 && currentTurn ? handleSelect(e) : null}
+							playable={!game.gameOver && currentTurn && i === 0}
 							selected={selected}
 							player={player}
 							index={i}
@@ -255,6 +255,9 @@ const Game = () => {
 
 
 		</div>
+
+		<Log messages={game.log} />
+				
 		</React.Fragment>
 
 		)

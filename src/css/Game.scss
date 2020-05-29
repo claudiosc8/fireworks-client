@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+#game * {
+	box-sizing: border-box;
+}
+
 #table {
 	flex:1;
 	justify-content: center
@@ -55,6 +59,7 @@
     align-content: center;
     justify-content: center;
     font-weight: 700;
+    box-sizing: content-box !important;
 }
 
 .section {
@@ -81,9 +86,9 @@
 	    	& .player-info {
 		    	background-color: scale-color($primary-color, $lightness: 5%);
 		    }
-	    }
-	    &:hover .title {
-	    	color: scale-color($primary-color, $lightness: 5%);
+		    & .title {
+		    	color: scale-color($primary-color, $lightness: 5%);
+		    }
 	    }
 	    &.selectable {
 	    	border-color: $selectable;
@@ -98,10 +103,13 @@
 					color: scale-color($selectable, $lightness: 50%);
 				}
 	    	}
+	    	& .player-info {
+		    	background-color: $selectable;
+		    }
 	    }
 	    &.currentTurn {
-	    border-color: scale-color($primary-color, $lightness: 90%);
-	    box-shadow: 0 15px 30px #29268F;
+		    border-color: scale-color($primary-color, $lightness: 90%);
+		    box-shadow: 0 15px 30px #29268F;
 		    & .player-info {
 		    	background-color: scale-color($primary-color, $lightness: 90%);
 				color:$primary-color;
@@ -111,5 +119,35 @@
 }
 
 
+@media only screen and (max-width: 970px) {
+  #game {
+  	flex-direction: column;
+  }
+}
 
+@media only screen and (max-width: 768px) {
+	
+	#game, #players-area, #playing-area {
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	#players-area, #playing-area {
+		width:100%;
+		margin:0;
+		padding:10px;
+	}
+	
+	.content {
+		width:100%;
+	}
+
+	.section {
+		width:100%;
+		margin: 10px 0;
+	}
+	.row {
+		flex-direction: column;
+	}
+}
 

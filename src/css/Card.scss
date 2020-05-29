@@ -1,6 +1,6 @@
 .cards-wrapper .card-wrapper, .empty-wrapper {
 	position:relative;
-	padding:5px;
+	padding:.4rem;
 }
 
 .cards-wrapper {
@@ -8,9 +8,9 @@
 }
 
 .card, .empty-wrapper .empty {
-	width: 100px;
-    height: 150px;
-    border-radius: 10px;
+	width: 6.25rem;
+    height: 9.3rem;
+    border-radius: .8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,15 +19,16 @@
 
 .card {
     box-shadow: inset 0 0 0 5px #fff, 0 1px 0px #00000055;
-    font-size: 70px;
+    font-size: 4.3rem;
     color:#fff;
     font-weight: 900;
     &[data-color='unknown'] {
 		background-color:scale-color($bg-color, $lightness: -20%);
 		background-image: radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%),
 		radial-gradient(closest-side, transparent 98%, rgba(0,0,0,.3) 99%);
-		background-size:40px 40px;
+		background-size:2.5rem 2.5rem;
 		background-position:0 0, 20px 20px;
+		cursor: pointer;
 		& .hint.color {
 			box-shadow: 0 2px 3px rgba(0,0,0,0.5);
 		}
@@ -36,21 +37,21 @@
 		color:$primary-color;
 	}
 	& .hint {
-		width: 30px;
-	    height: 30px;
+		width: 1.8rem;
+	    height: 1.8rem;
 	    position: absolute;
-	    top:-5px;
+	    top:-.2rem;
 		border-radius: 5px 5px 15px 15px;
 	    border: 3px solid #fff;
 	    
 	    &.color{
-			left: 15px;
+			left: 1rem;
 	    }
 	    &.value{
-	    	right: 15px;
+	    	right: 1rem;
 		    background: white;
 		    color: $primary-color;
-		    font-size: 21px;
+		    font-size: 1.3rem;
 		    text-shadow: none;
 		    display: flex;
 		    justify-content: center;
@@ -81,7 +82,7 @@
 
 
 .card-wrapper.selected {
-	transform: translateY(-10px);
+	transform: translateY(-.5rem);
 	& .card {
 	 	box-shadow: inset 0 0 0 5px #fff, 0 0 0 3px $selected,0 15px 30px #29268F;
 	}
@@ -90,6 +91,7 @@
 .card-wrapper.dragging {
 	& .card {
 	 	box-shadow: inset 0 0 0 5px #fff, 0 15px 30px #29268F;
+	 	cursor: grabbing;
 	}
 }
 
@@ -98,3 +100,43 @@
 //   0% {transform: scale(0);}
 //   100% {transform: scale(1);}
 // }
+
+@media only screen and (max-width: 768px) {
+	.card-wrapper, .empty-wrapper {
+	    flex-grow: 1;
+	    flex-basis: 0;
+	}
+
+	.card, .empty-wrapper .empty {
+		width: auto;
+	    height: auto;
+	}
+	
+	.cards-wrapper .card-wrapper, .cards-wrapper .empty-wrapper {
+	    padding: 4%;
+	    margin: 0 1%;
+	    @include aspect-ratio(2, 4);
+	}
+	
+	.card {
+	    font-size: 10vw;
+	}
+	
+	.deck .relative {
+		width:20%;
+	}
+	.deck > div > .card-wrapper:first-child, .deck > div > .empty-wrapper {
+		@include aspect-ratio(2, 3);
+	}
+
+	.deck .card-wrapper, .deck .card-wrapper .card, {
+		width:100%;
+		height:100%;
+	}
+
+	.empty-wrapper .empty {
+	    align-items: center;
+	    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%235553C0FF' stroke-width='5' stroke-dasharray='5 10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
+	}
+
+}

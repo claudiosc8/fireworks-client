@@ -17,9 +17,16 @@
 	color:$primary-color;
 	font-size:25px;
 	font-weight: 700;
+	cursor: pointer;
+	&:hover {
+		background-color: scale-color($primary-color, $lightness: 90%);
+	}
 	&.selected {
 		box-shadow: 0 0 0 4px $selected;
 		transform: translateY(-5px);
+		&:hover {
+			background-color: #fff;
+		}
 	}
 }
 

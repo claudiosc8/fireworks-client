@@ -57,3 +57,11 @@
 	  background: scale-color($primary-color, $lightness: 50%);
 	}
 }
+
+@media only screen and (max-width: 768px) {
+	#log {
+		position: relative;
+		bottom:auto;
+		right:auto;
+	}
+}

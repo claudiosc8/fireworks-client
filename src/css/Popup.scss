@@ -23,25 +23,26 @@
     transition: all 1s ease;
 }
 
-.popup:after {
-    content: '';
-    background-image: url('/static/media/star-bg.461f8801.svg');
-    width: 200%;
-    height: 400%;
-    position: absolute;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    top: -150%;
-    left: -50%;
-    opacity: 0.4;
-    animation-name: rotate;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-direction: forward;
-    animation-timing-function: linear;
-}
+// .popup:after {
+//     content: '';
+//     background-image: url('../img/star-bg.svg');
+//     width: 200%;
+//     height: 400%;
+//     position: absolute;
+//     background-size: 100%;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     z-index: -1;
+//     top: -150%;
+//     left: -50%;
+//     opacity: 0.4;
+//     animation-name: rotate;
+//     animation-duration: 10s;
+//     animation-iteration-count: infinite;
+//     animation-direction: forward;
+//     animation-timing-function: linear;
+//     user-select: none;
+// }
 
 .popup-wrapper > .popup {
   max-width: 500px;

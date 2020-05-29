@@ -1,7 +1,5 @@
 #tokens {
 	display: flex;
-    font-size: 30px;
-    font-weight: 700;
 }
 
 #tokens > .tokens {
@@ -19,6 +17,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .tokens.note .token {
@@ -33,3 +33,19 @@ background-color: #333;
 color:#F44336;
 }
 
+@media only screen and (max-width: 768px) {
+	.token {
+		width:30px;
+		height:30px;
+		font-size: 18px;
+	}
+
+	.tokens.note .token {
+		background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%235553C0FF' stroke-width='5' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+	}
+
+	.tokens.storm .token {
+		background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23F4433699' stroke-width='5' stroke-dasharray='5' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+	}
+
+}
