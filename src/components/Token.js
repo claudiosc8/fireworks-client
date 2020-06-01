@@ -14,10 +14,9 @@ const Token = ({name, number, id, distance, className}) => {
 
 	return (
 
-		<div id={id} className={`tokens${className}`} >
+		<div id={id} className={`tokens${className}`} data-tip={name}>
 		
 		<div className='relative'>
-
 			{renderTokens(number)}
 		</div>
 

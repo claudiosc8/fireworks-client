@@ -1,0 +1,35 @@
+.form-wrapper {
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & form {
+    	padding:20px;
+	    box-sizing: border-box;
+	    & label {
+	    	font-size: 14px;
+	    	text-transform:uppercase;
+	    	color:white;
+	    }
+	    & input {
+	    	width:100%;
+	    	padding: 20px;
+	    	margin:5px 0;
+	    	box-sizing: border-box;
+	    	border-radius: 3px;
+	    	border:none;
+	    }
+	    & a {
+	    	& .button-outer {
+		    	margin:5px 0;
+		    	padding: 0
+		    }
+    	}
+    }
+    
+}
+
+.copyright-section {
+	font-size: 10px
+}

@@ -9,6 +9,7 @@ import Token from './Token'
 import Hints from './Hints'
 import Log from './Log'
 import GameOver from './GameOver'
+import ReactTooltip from "react-tooltip";
 
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
@@ -191,6 +192,7 @@ const Game = () => {
 					distance={1}
 					unknown
 					className=' section'
+					name='Remaining Cards'
 				/>
 
 				<div id="tokens" className='section'>
@@ -216,6 +218,7 @@ const Game = () => {
 				distance={1}
 				className={` section border grow${selected !== undefined ? ' selectable' : ''}`}
 				cards={game.cards.discardPile}
+				name='Discard Pile'
 			/>
 
 			<Hints 
@@ -257,7 +260,7 @@ const Game = () => {
 		</div>
 
 		<Log messages={game.log} />
-				
+		<ReactTooltip effect='solid' place='bottom'/>
 		</React.Fragment>
 
 		)

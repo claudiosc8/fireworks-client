@@ -3,7 +3,7 @@ import Card from './Card'
 import Empty from './Empty'
 
 
-const Deck = ({id, unknown, onClick, distance, className, cards, title}) => {
+const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) => {
 
 	const renderCards = (number) => {
 	    const items = [];
@@ -12,7 +12,7 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title}) => {
 
 
 	        items.push(
-	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } >
+	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } data-tip={name}>
 		        	<Card 
 		        	unknown={unknown} 
 		        	key={i}

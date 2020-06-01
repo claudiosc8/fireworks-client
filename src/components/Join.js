@@ -24,15 +24,15 @@ const Join = () => {
 	return (
 
 
-		<div className="page-container">
-		<div>
-		<div className="title">Logo</div>
+		<div className="page-container flex center">
 		<div className={'form-wrapper'}>
+
+		
 			<form onSubmit={handleSubmit} className="form">
 
-				<label htmlFor='name-input'>Your Name</label>
+
 			 	<input type="text" id='name-input' placeholder="Your name" onChange={(e) => setName(e.target.value)} />
-			  	<label htmlFor='room-input'>Room Name</label>
+
 			  	<input type="text" id='room-input' placeholder="Room name" onChange={(e) => setRoom(e.target.value)} />
 
 			  	<div className='space'></div>
@@ -43,7 +43,7 @@ const Join = () => {
 			  	
 			</form>
 			
-		</div>
+		
 		</div>
 		<div className='copyright-section'>
 			<a href='http://claudioscotto.it' rel="noopener noreferrer" target="_blank" className='copyright'>©2020 - Claudio Scotto</a>
