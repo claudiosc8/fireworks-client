@@ -12,7 +12,7 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) =
 
 
 	        items.push(
-	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } data-tip={name}>
+	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` }>
 		        	<Card 
 		        	unknown={unknown} 
 		        	key={i}
@@ -28,9 +28,9 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) =
 
 	return (
 
-		<div id={id} className={`deck${className || ''}`} onClick={onClick}>
+		<div id={id} className={`deck${className || ''}`} onClick={onClick} data-tip={name}>
 		{title && <div className='title'>{title}</div>}
-		<div className='relative'>
+		<div className='relative flex center'>
 			
 			{cards.length > 0 ? renderCards(cards.length) : <Empty />}
 		</div>

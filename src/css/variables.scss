@@ -80,3 +80,8 @@ $colors:
     bottom: 0%;
   }
 }
+
+@mixin keep-ratio($width, $a, $b) {
+  	height: $width*$b/$a+vw;
+}
+

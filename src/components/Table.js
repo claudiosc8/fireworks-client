@@ -15,7 +15,7 @@ const Table = ({onClick, colors, cardsOnTable, className}) => {
 
 		<div id="table" onClick={onClick} onDragOver={handleDragOver} className={`section border${className}`}>
 
-			<div className='fullwidth flex cards-wrapper'> 
+			<div className='fullwidth flex cards-wrapper center'> 
 			{colors.map((color,i) =>  {
 				const card = {color:color, value:cardsOnTable[color]}
 				return cardsOnTable[color] === 0 ? <Empty key={i} /> : <Card card={card} key={i} />

@@ -18,6 +18,7 @@
 	font-size:25px;
 	font-weight: 700;
 	cursor: pointer;
+    position: relative;
 	&:hover {
 		background-color: scale-color($primary-color, $lightness: 90%);
 	}
@@ -30,8 +31,48 @@
 	}
 }
 
+.symbol:after, .symbol:before {
+	content: '';
+	position: absolute;
+	width:4vw;
+	height:4vw;
+	max-width: 40px;
+	max-height: 40px;
+	border-radius: 50%;
+}
+
+.symbol.red:after {
+	background-color: $red;
+}
+
+.symbol.blue:after {
+	background-color: $blue;
+}
+
+.symbol.green:after {
+	background-color: $green;
+}
+
+.symbol.yellow:after {
+	background-color: $yellow;
+}
+
+.symbol.white:after {
+	background-color: $white;
+}
+
+
+
 // @each $name, $color in $colors {
 //   #hints .hint.#{$name} {
 //     background-color: $color;
 //   }
 // }
+
+@media only screen and (max-width: 620px) {
+	#hints .hint {
+		width:10vw;
+		height:10vw;
+		font-size: 6vw;
+	}
+}

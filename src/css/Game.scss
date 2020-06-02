@@ -119,7 +119,7 @@
 }
 
 
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 1024px) {
   #game {
   	flex-direction: column;
   }
@@ -129,13 +129,13 @@
 	
 	#game, #players-area, #playing-area {
 		justify-content: flex-start;
-		align-items: flex-start;
 	}
 
 	#players-area, #playing-area {
 		width:100%;
 		margin:0;
 		padding:10px;
+
 	}
 	
 	.content {
@@ -143,11 +143,28 @@
 	}
 
 	.section {
-		width:100%;
+		// width:100%;
 		margin: 10px 0;
+		justify-content: center;
 	}
 	.row {
-		flex-direction: column;
+		flex-basis: 50%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+
+	.section.border {
+	    padding: 10px;
+	    border: 10px solid #5553C0;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.section.border {
+	    padding: 5px;
+	    border: 8px solid #5553C0;
 	}
 }
 

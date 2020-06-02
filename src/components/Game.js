@@ -180,7 +180,7 @@ const Game = () => {
 
 		{ game.gameOver && <GameOver score={game.score} result={game.result} gameover={game.stormTokens === 0} handleStartGame={handleStartGame} /> }
 
-		<div id="game">
+		<div id="game" className={`number-of-players-${players.length}`}>
 
 		<div id="playing-area">
 			<div className="content">
@@ -231,7 +231,7 @@ const Game = () => {
 			</div>
 		</div>
 
-		<div id="players-area" className={`number-of-players-${players.length}`}>
+		<div id="players-area">
 			{players.map((player, i) => {
 
 				const emptySelection = hint.value === undefined && hint.type ===  undefined

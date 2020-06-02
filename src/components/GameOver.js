@@ -19,7 +19,6 @@ const GameOver = ({gameover, score, result, className, handleStartGame}) => {
 	    return items;
 	}
 
-	console.log(isVisible)
 
 	return (
 
