@@ -12,10 +12,9 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) =
 
 
 	        items.push(
-	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` }>
+	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } key={i}>
 		        	<Card 
 		        	unknown={unknown} 
-		        	key={i}
 		        	card={cards[i]}
 		        	>
 		        	{i === number-1 && unknown && <div className="number">{number}</div>}

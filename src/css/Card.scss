@@ -181,9 +181,18 @@
 		width: 15vw;
 	    @include keep-ratio(15,2,3);
 	    font-size: 13vw;
+	    border-radius: 1vw;
+	}
+	
+	.empty-wrapper .empty {
+		box-sizing: border-box;
+	    background-image: none;
+	    border: 1vw dashed $primary-color;
 	}
 
+
 	.card {
+	    box-shadow: inset 0 0 0 .8vw #fff, 0 1px 0px #00000055;
 		& .hint {
 			width: 6vw;
 		    height: 6vw;
@@ -197,6 +206,21 @@
 		    }
 		}
 	}
+
+	.card-wrapper.selected {
+		transform: translateY(-.5rem);
+		& .card {
+		 	box-shadow: inset 0 0 0 .8vw #fff, 0 0 0 3px $selected,0 15px 30px #29268F;
+		}
+	}
+
+	.card-wrapper.dragging {
+		& .card {
+		 	box-shadow: inset 0 0 0 .8vw #fff, 0 15px 30px #29268F;
+		 	cursor: grabbing;
+		}
+	}
+
 }
 
 @media only screen and (max-width: 480px) {

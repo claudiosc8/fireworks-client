@@ -10,6 +10,8 @@ import Hints from './Hints'
 import Log from './Log'
 import GameOver from './GameOver'
 import ReactTooltip from "react-tooltip";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
@@ -26,6 +28,7 @@ const Game = () => {
 	const [loading, setLoading] = useState(true)
 	const [selected, setSelected] = useState(undefined)
 	const [hint, setHint] = useState({})
+	const [showLog, setShowLog] = useState(false)
 
 	//SETUP SOCKET
 	useEffect( () => {
@@ -259,7 +262,14 @@ const Game = () => {
 
 		</div>
 
-		<Log messages={game.log} />
+		<div className='log-button' onClick={() => setShowLog(true)}><FontAwesomeIcon icon={faBars} />Game Log</div>
+		<Log 
+			messages={game.log}
+			setShowLog={(e) => setShowLog(e)}
+			showLog={showLog}
+		 />
+		
+		
 		<ReactTooltip effect='solid' place='bottom'/>
 		</React.Fragment>
 

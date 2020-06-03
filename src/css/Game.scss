@@ -82,7 +82,7 @@
 		    font-weight: 700;
 	    }
 	    &:hover {
-	    	border: 10px solid scale-color($primary-color, $lightness: 5%);
+	    	border-color: scale-color($primary-color, $lightness: 5%);
 	    	& .player-info {
 		    	background-color: scale-color($primary-color, $lightness: 5%);
 		    }
@@ -127,6 +127,10 @@
 
 @media only screen and (max-width: 768px) {
 	
+	#game {
+		margin-top:100px;
+	}
+
 	#game, #players-area, #playing-area {
 		justify-content: flex-start;
 	}
@@ -136,6 +140,10 @@
 		margin:0;
 		padding:10px;
 
+	}
+
+	#discard {
+		margin-right:2vw;
 	}
 	
 	.content {
@@ -155,16 +163,10 @@
 @media only screen and (max-width: 480px) {
 
 	.section.border {
-	    padding: 10px;
-	    border: 10px solid #5553C0;
+	    padding: 2vw;
+	    border: 2vw solid #5553C0;
+        border-radius: 3vw;
 	}
 }
 
-@media only screen and (max-width: 320px) {
-
-	.section.border {
-	    padding: 5px;
-	    border: 8px solid #5553C0;
-	}
-}
 

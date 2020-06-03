@@ -12,6 +12,10 @@ body {
   background-color: $bg-color;
 }
 
+#root {
+  position: relative;
+}
+
 * {
   box-sizing: border-box;
 }
