@@ -5,15 +5,7 @@ const Empty = ({id, className}) => {
 
 
 	return (
-
-			<div className='empty-wrapper' id={id}>
-				<span 	
-				className={`empty${className || ''}`} 
-				>
-					
-				</span>
-			</div>
-
+				<span className={`empty${className || ''}`}></span>
 		)
 }
 

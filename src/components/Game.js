@@ -47,7 +47,11 @@ const Game = () => {
 			socket.emit('join', {name, room}, (response) => {
 				if(response.error) {
 					setError({message:response.error})
-				} else {
+				} else if (response.game) {
+					setGame(response.game);
+		      		setLoading(false)
+		      		setCurrentUser(response.name)
+				}else {
 					setCurrentUser(response.name)
 				}
 			});
@@ -127,17 +131,6 @@ const Game = () => {
 		setSelected(undefined)
 	}
 
-	// const handlePlayCard = (type) => {
-
-	// 	if(type === 'discard' || type === 'play') {
-	// 		const data = {type, action: selected}
-	// 		socket.emit('playTurn', data)
-	// 		setSelected(undefined)
-	// 		setHint({})
-	// 	} 
-		
-	// }
-
 	const handlePlayCard = (type, index) => {
 
 		if(type === 'discard' || type === 'play') {
@@ -175,7 +168,6 @@ const Game = () => {
 	}
 
 	if(players.length > 0) {
-	console.log(game, players)
 
 	return (
 
@@ -210,6 +202,7 @@ const Game = () => {
 				onClick={() => selected !== undefined ? handlePlayCard('play') : null}
 				cardsOnTable={game.cards.table}
 				className={selected !== undefined ? ' selectable' : ''}
+				title='board'
 			/>
 			</div>
 			<div className="row">
@@ -221,7 +214,7 @@ const Game = () => {
 				distance={1}
 				className={` section border grow${selected !== undefined ? ' selectable' : ''}`}
 				cards={game.cards.discardPile}
-				name='Discard Pile'
+
 			/>
 
 			<Hints 

@@ -67,7 +67,7 @@
 	justify-content: center;
     align-content: center;
     display: flex;
-    margin: 10px;
+    margin: 15px 10px;
     position: relative;
     &.border {
     	padding:15px;
@@ -119,18 +119,19 @@
 }
 
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1025px) {
   #game {
   	flex-direction: column;
+  	margin-top:100px;
   }
+
+  #playing-area {
+    margin-top: 350px;
+	}
 }
 
 @media only screen and (max-width: 768px) {
 	
-	#game {
-		margin-top:100px;
-	}
-
 	#game, #players-area, #playing-area {
 		justify-content: flex-start;
 	}
@@ -158,6 +159,8 @@
 	.row {
 		flex-basis: 50%;
 	}
+
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -166,6 +169,11 @@
 	    padding: 2vw;
 	    border: 2vw solid #5553C0;
         border-radius: 3vw;
+	}
+
+	.section.border .title {
+	    font-size: 2.5vw;
+	    bottom: -5.5vw;
 	}
 }
 
