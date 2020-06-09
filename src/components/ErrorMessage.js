@@ -9,7 +9,7 @@ const ErrorMessage = ({message}) => {
 
 		<div id='error'>
 				<div className='text'>{message}</div>
-				<Link to={'/fireworks/'}><Button text={'Go back'} /></Link>
+				<Link to={'/'}><Button text={'Go back'} /></Link>
 		</div>
 
 		)
