@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 import Button from './Button'
+import Logo from '../img/logo.svg'
 
 const Join = () => {
 
@@ -24,10 +25,10 @@ const Join = () => {
 	return (
 
 
-		<div className="page-container flex center">
+		<div className="page-container flex">
 		<div className={'form-wrapper'}>
 
-		
+			<img src={Logo} alt='logo' className='logo'/>
 			<form onSubmit={handleSubmit} className="form">
 
 

@@ -2,20 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import Card from './Card'
 
-const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, handlePlayCard, player, selected, lastcard, index, deselect, playable}) => {
+const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, handlePlayCard, player, selected, lastcard, index, deselect, playable, online}) => {
 
-	const [hand, setHand] = useState([])
 
 	const currentPlayer = index === 0;
 
 	const [isDragging, setDragging] = useState(false);
 
 
-	useEffect( () => {
-		if(cards) {
-			setHand(cards)
-		}
-	}, [cards])
+
 
 
 	function isEventInElement(event, element)   {
@@ -85,46 +80,46 @@ const Hand = ({currentTurn, className, cards, handlePlayHint, handleSelect, hand
 	}
 
 
+
 	return (
 
 			
 			<div className={`hand section border player${index}${className}${currentTurn ? ' currentTurn' : ''}`} onClick={() => handlePlayHint()} style={{zIndex: isDragging !== false ? 1 : 0}}>
 
-			<div className='player-info'>{player.name}</div>
+			<div className='player-info'>{player.name} {!online && <div className='status'>offline</div>} </div>
 			<div className={'cards-wrapper'}>
-				{hand.map((card,i) => {
+				{cards.map((card,i) => {
 						
 					const isSelected = currentPlayer && Number(selected) === Number(i);
 
-					return (
 
-							<motion.div 
-								key={card.id} 
-								positionTransition={{transition:1}} 
-								dragConstraints={{ left:0, right:0, top:0, bottom:0 }}
-								animate={{ scale: 1, transition: .2 }} 
-								whileHover={playable && { scale: 1.03, transition: .2 }}
-								initial={{ scale:0 }} 
-								drag={playable}
-								onDragStart={(event, info) => onDragStart(event, info, i)}
-							  	onDrag={(event, info) => onDrag(event, info)}
-							  	onDragEnd={(event, info) => onDragEnd(event, info, i)}
-							  	dragElastic={1}
-							  	style={{zIndex: isDragging === i ? 1 : 0}}
-							  	className={`card-wrapper${isDragging === i ? ' dragging' : ''}${isSelected ? ' selected' : ''}`}
-							>
-	{						<Card 
-								id={card.id}
-								card={card} 
-								unknown={currentPlayer} 
-								selected={currentPlayer && Number(selected) === Number(i)}
-								onClick={() => isDragging === false && handleSelect(i) }
-								newCard={lastcard && card.id === lastcard.id}
-								dragging={isDragging === i}
-							/>}
-							</motion.div>
-	
-					)}
+					return card !== null ? 
+								<motion.div 
+									key={card.id} 
+									positionTransition={{transition:1}} 
+									dragConstraints={{ left:0, right:0, top:0, bottom:0 }}
+									animate={{ scale: 1, transition: .2 }} 
+									whileHover={playable && { scale: 1.03, transition: .2 }}
+									initial={{ scale:0 }} 
+									drag={playable}
+									onDragStart={(event, info) => onDragStart(event, info, i)}
+								  	onDrag={(event, info) => onDrag(event, info)}
+								  	onDragEnd={(event, info) => onDragEnd(event, info, i)}
+								  	dragElastic={1}
+								  	style={{zIndex: isDragging === i ? 5 : 0}}
+								  	className={`card-wrapper${isDragging === i ? ' dragging' : ''}${isSelected ? ' selected' : ''}`}
+								>
+								 <Card 
+									id={card.id}
+									card={card} 
+									unknown={currentPlayer} 
+									selected={currentPlayer && Number(selected) === Number(i)}
+									onClick={() => isDragging === false && handleSelect(i) }
+									newCard={lastcard && card.id === lastcard.id}
+									dragging={isDragging === i}
+								/>
+								</motion.div> : null
+					}
 
 				)}
 			</div>

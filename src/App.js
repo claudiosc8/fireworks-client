@@ -4,10 +4,11 @@ import Join from './components/Join'
 import Game from './components/Game'
 
 
+
 const App = () => {
 
   return (
-    <Router>
+    <Router basename={'/fireworks/'}>
       <Route path='/' exact component={Join} />
       <Route path='/:room' component={Game} />
     </Router>

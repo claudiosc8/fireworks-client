@@ -1,28 +1,22 @@
 import React from 'react';
 import Card from './Card'
 import Empty from './Empty'
+import CardPile from './CardPile'
 
 const Table = ({onClick, colors, cardsOnTable, className, title}) => {
 
-	const handleDragOver = e => {
-	    e.preventDefault();
-	    e.stopPropagation();
-	    console.log('over')
-	  };
 
 	return (
 
-
-		<div id="table" onClick={onClick} onDragOver={handleDragOver} className={`section border${className}`}>
+		<div id="table" onClick={onClick} className={`section border${className}`}>
 
 			{title && <div className='title'>{title}</div>}
 
 			<div className='fullwidth flex cards-wrapper center'> 
 			{colors.map((color,i) =>  {
-				const card = {color:color, value:cardsOnTable[color]}
-				return cardsOnTable[color] === 0 
-				? <div className={`empty-wrapper`} key={i}><Empty /></div>
-				: <div className={`card-wrapper`} key={i}><Card card={card}/></div>
+				const card = cardsOnTable[color] === 0 ? [] : Array(cardsOnTable[color]).fill({}).map((e,index) => { return {color:color, value:index+1} })
+				console.log(card) 
+				return <CardPile cards={card} distance={3} key={i}/>
 			})}
 			</div>
 

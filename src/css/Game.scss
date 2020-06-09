@@ -4,10 +4,18 @@
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	max-width: 1440px;
     margin: 0 auto;
 }
+
+.logo {
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    left: 5%;
+    z-index: 9;
+} 
 
 #game * {
 	box-sizing: border-box;
@@ -26,22 +34,24 @@
     margin-bottom: 30px;
 }
 
-#playing-area {
-    display: flex;
-    width: 100%;
-    max-width: 1440px;
-    flex-wrap: wrap;
-    justify-content: center;
+#playing-area, #players-area {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
     flex-direction: column;
-    align-items: center;
+    flex-basis: 50%;
+    min-height: 100%;
+    padding-top: 20px;
+}
+#playing-area {
+    align-items: flex-end;
+    padding-right: 4%;
 }
 
 #players-area {
-	display: flex;
-	flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 5%;
+    z-index: 2;
 }
 
 .player-info {
@@ -60,6 +70,14 @@
     justify-content: center;
     font-weight: 700;
     box-sizing: content-box !important;
+    & .status {
+    	font-size:10px;
+    	color: scale-color($primary-color, $lightness: 50%);
+    	padding: 0 5px;
+	    display: flex;
+	    align-items: flex-end;
+	    margin-bottom: 2px;
+    }
 }
 
 .section {
@@ -75,7 +93,7 @@
 	    border-radius: 20px;
 	    & .title {
 		    position: absolute;
-		    bottom: -30px;
+		    top: calc(100% + 10px);
 		    left:15px;
 		    text-transform: uppercase;
 		    color: $primary-color;
@@ -119,62 +137,6 @@
 }
 
 
-@media only screen and (max-width: 1025px) {
-  #game {
-  	flex-direction: column;
-  	margin-top:100px;
-  }
 
-  #playing-area {
-    margin-top: 350px;
-	}
-}
-
-@media only screen and (max-width: 768px) {
-	
-	#game, #players-area, #playing-area {
-		justify-content: flex-start;
-	}
-
-	#players-area, #playing-area {
-		width:100%;
-		margin:0;
-		padding:10px;
-
-	}
-
-	#discard {
-		margin-right:2vw;
-	}
-	
-	.content {
-		width:100%;
-	}
-
-	.section {
-		// width:100%;
-		margin: 10px 0;
-		justify-content: center;
-	}
-	.row {
-		flex-basis: 50%;
-	}
-
-
-}
-
-@media only screen and (max-width: 480px) {
-
-	.section.border {
-	    padding: 2vw;
-	    border: 2vw solid #5553C0;
-        border-radius: 3vw;
-	}
-
-	.section.border .title {
-	    font-size: 2.5vw;
-	    bottom: -5.5vw;
-	}
-}
 
 

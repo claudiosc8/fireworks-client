@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400;700;900&display=swap');
+
 body, html, #root {
   margin: 0;
   padding: 0;
   min-height:100vh;
   height: 100%;
   width:100vw;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Exo', sans-serif;
 }
 
@@ -58,8 +60,20 @@ body {
   flex-direction: column;
 }
 
-@media only screen and (max-width: 1025px) {
-  body, html, #root {
-    overflow-y: scroll;
-  }
+#error {
+    width: 350px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    & .text {
+        margin-bottom:20px;
+      }
 }
+
+

@@ -1,25 +1,30 @@
 import React from 'react';
 import Card from './Card'
 import Empty from './Empty'
+import { motion } from "framer-motion";
 
-
-const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) => {
+const CardPile = ({id, unknown, onClick, distance, className, cards, title, name}) => {
 
 	const renderCards = (number) => {
 	    const items = [];
 	    for (let i=0; i < number; i++) {
-	    	const style = {top:-i*distance}
-
+	    	const style = {top:-i*distance, zIndex:2}
 
 	        items.push(
-	        	<div style={style} className={`card-wrapper${i === 0 ? '' : ' absolute'}` } key={i}>
+	        	<motion.div 
+		        	style={style} 
+		        	className={`card-wrapper${i === 0 ? '' : ' absolute'}` } 
+		        	key={i}
+		        	animate={{ scale: 1, transition: .2 }} 
+					initial={!unknown && { scale:3 }} 
+	        	>
 		        	<Card 
-		        	unknown={unknown} 
-		        	card={cards[i]}
+			        	unknown={unknown} 
+			        	card={cards[i]}
 		        	>
 		        	{i === number-1 && unknown && <div className="number">{number}</div>}
 		        	</Card>
-	        	</div>
+	        	</motion.div>
 	        	);
 	    }
 	    return items;
@@ -41,4 +46,4 @@ const Deck = ({id, unknown, onClick, distance, className, cards, title, name}) =
 		)
 }
 
-export default Deck
+export default CardPile

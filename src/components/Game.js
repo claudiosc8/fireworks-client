@@ -4,17 +4,21 @@ import {useParams, Redirect } from 'react-router-dom'
 import Lobby from './Lobby'
 import Hand from './Hand'
 import Table from './Table'
-import Deck from './Deck'
+import CardPile from './CardPile'
 import Token from './Token'
 import Hints from './Hints'
 import Log from './Log'
+import ErrorMessage from './ErrorMessage'
 import GameOver from './GameOver'
 import ReactTooltip from "react-tooltip";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import Popup from './Popup'
+import Fireworks from './Fireworks'
 
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
+const homepage = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_HOMEPAGE : '/'
 
 const Game = () => {
 
@@ -155,12 +159,14 @@ const Game = () => {
 		
 	}
 
+
+
 	if(error && error.redirect) {
 		return <Redirect to='/' />
 	}
 
 	if(error && error.message) {
-		return error.message
+		return <ErrorMessage message={error.message} />
 	}
 
 	if(game && !game.started) {
@@ -173,7 +179,20 @@ const Game = () => {
 
 		<React.Fragment>
 
-		{ game.gameOver && <GameOver score={game.score} result={game.result} gameover={game.stormTokens === 0} handleStartGame={handleStartGame} /> }
+		{ game.gameOver && 
+			<Popup 
+				id={'gameover'} 
+				background={game.stormTokens !== 0 && <Fireworks id='fireworks'/>}
+			>
+				<GameOver 
+					score={game.score} 
+					result={game.result} 
+					gameover={game.stormTokens === 0} 
+					handleStartGame={handleStartGame} 
+				/>
+			</Popup> 
+		}
+
 
 		<div id="game" className={`number-of-players-${players.length}`}>
 
@@ -181,7 +200,7 @@ const Game = () => {
 			<div className="content">
 			<div className="row">
 
-				<Deck 
+				<CardPile 
 					id="remainingCards"
 					cards={game.cards.deck} 
 					distance={1}
@@ -207,7 +226,7 @@ const Game = () => {
 			</div>
 			<div className="row">
 			
-			<Deck 
+			<CardPile 
 				id="discard"
 				title="Discard Pile" 
 				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
@@ -247,6 +266,7 @@ const Game = () => {
 							lastcard={game.drawnCard}
 							handlePlayCard={handlePlayCard}
 							deselect={() => setSelected(undefined)}
+							online={users.some(e => e.name === player.name)}
 						/>
 
 			})}
@@ -260,6 +280,7 @@ const Game = () => {
 			messages={game.log}
 			setShowLog={(e) => setShowLog(e)}
 			showLog={showLog}
+			handleStartGame={handleStartGame}
 		 />
 		
 		

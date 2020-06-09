@@ -2,9 +2,10 @@ import React, {useRef, useEffect} from 'react';
 import * as moment from 'moment';
 import parse from 'html-react-parser';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import Logo from '../img/logo.svg'
+import Button from './Button'
 
-
-const Log = ({messages, className, showLog, setShowLog}) => {
+const Log = ({messages, className, showLog, setShowLog, handleStartGame}) => {
 
 
 	const innerRef = useOuterClick(() => close(), showLog);
@@ -16,8 +17,11 @@ const Log = ({messages, className, showLog, setShowLog}) => {
 	return (
 
 		<div id="log" className={`section${className || ''}${showLog ? ' show' : ''}`} ref={innerRef}>
-			<div className='title'>Game Log</div>
-			<ScrollToBottom>
+			
+				<img src={Logo} alt='logo' className='logo'/>
+			
+
+			<ScrollToBottom className='log'>
 			<div className='relative'>
 
 				<ul> 
@@ -30,8 +34,13 @@ const Log = ({messages, className, showLog, setShowLog}) => {
 				</ul>
 				
 			</div>
-	
 			</ScrollToBottom> 
+
+			<Button text='New game' onClick={handleStartGame} />
+			
+			<a href={'/fireworks/'}>
+				<Button text='Leave Room' />
+			</a>
 		</div>
 
 
