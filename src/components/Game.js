@@ -8,6 +8,7 @@ import CardPile from './CardPile'
 import Token from './Token'
 import Hints from './Hints'
 import Log from './Log'
+import DiscardedCards from './DiscardedCards'
 import ErrorMessage from './ErrorMessage'
 import GameOver from './GameOver'
 import ReactTooltip from "react-tooltip";
@@ -16,9 +17,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Popup from './Popup'
 import Fireworks from './Fireworks'
 
+
 let socket;
 const ENDPOINT = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_SERVER_URL_DEV : process.env.REACT_APP_SERVER_URL_PRODUCTION
-const homepage = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_HOMEPAGE : '/'
+
 
 const Game = () => {
 
@@ -33,6 +35,7 @@ const Game = () => {
 	const [selected, setSelected] = useState(undefined)
 	const [hint, setHint] = useState({})
 	const [showLog, setShowLog] = useState(false)
+	const [showDiscardedCards, setShowDiscardedCards] = useState(false)
 
 	//SETUP SOCKET
 	useEffect( () => {
@@ -179,10 +182,11 @@ const Game = () => {
 
 		<React.Fragment>
 
-		{ game.gameOver && 
+
 			<Popup 
 				id={'gameover'} 
 				background={game.stormTokens !== 0 && <Fireworks id='fireworks'/>}
+				status={game.gameOver}
 			>
 				<GameOver 
 					score={game.score} 
@@ -191,10 +195,15 @@ const Game = () => {
 					handleStartGame={handleStartGame} 
 				/>
 			</Popup> 
-		}
+		
 
 
-		<div id="game" className={`number-of-players-${players.length}`}>
+		<Popup id={'discardedCards'} status={showDiscardedCards} handleClose={() => setShowDiscardedCards(false)}>
+			<DiscardedCards cards={game.cards.discardPile} colors={colors}/>
+		</Popup> 
+		
+
+		<div id="game" className={`general number-of-players-${players.length}`}>
 
 		<div id="playing-area">
 			<div className="content">
@@ -229,7 +238,7 @@ const Game = () => {
 			<CardPile 
 				id="discard"
 				title="Discard Pile" 
-				onClick={() => selected !== undefined ? handlePlayCard('discard') : null} 
+				onClick={() => selected !== undefined ? handlePlayCard('discard') : setShowDiscardedCards(true)} 
 				distance={1}
 				className={` section border grow${selected !== undefined ? ' selectable' : ''}`}
 				cards={game.cards.discardPile}

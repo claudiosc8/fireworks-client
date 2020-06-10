@@ -2,16 +2,15 @@ import React, {useState} from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import Button from './Button'
 
-const Popup = ({id, className, background, children}) => {
+const Popup = ({id, className, background, children, handleClose, status}) => {
 
 	const [isVisible, setVisibility] = useState(true);
-
 
 	return (
 
 
 			<AnimatePresence>
-			{isVisible && 
+			{(status && isVisible) && 
 			<motion.div 
 				id={id} 
 				className={`popup-wrapper${className || ''}`} 
@@ -21,14 +20,14 @@ const Popup = ({id, className, background, children}) => {
 			>
 				
 				 <motion.div 
-					className='popup' 
+					className='relative popup' 
 					key="modal"
 			        initial={{ y: 20}}
 			        animate={{ y: 0 }}
 		        >
-					<div className='relative popup-inner'>
+					<div className='popup-inner'>
 						{children}
-						<Button className="close-btn" onClick={() => setVisibility(false)} />
+						<Button className="close-btn" onClick={() => handleClose ? handleClose() : setVisibility(false)} />
 					</div>
 				</motion.div>
 
@@ -36,7 +35,7 @@ const Popup = ({id, className, background, children}) => {
 
 					<div 
 						className={'background'} 
-						onClick={() => setVisibility(false)}
+						onClick={() => handleClose ? handleClose() : setVisibility(false)}
 					></div>
 				
 			</motion.div>

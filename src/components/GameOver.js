@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from './Button'
 import Star from '../img/star.svg'
 import Cloud from '../img/cloud.svg'
 import StarEmpty from '../img/star-empty.svg'
-import { motion, AnimatePresence } from "framer-motion";
+
 
 const GameOver = ({gameover, score, result, className, handleStartGame}) => {
-
-	const [isVisible, setVisibility] = useState(true);
 
 	const renderStars = (number) => {
 	    const items = [];

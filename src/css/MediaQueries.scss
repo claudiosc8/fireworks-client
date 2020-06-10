@@ -8,51 +8,38 @@
 // LAPTOP HiDPI
 @media only screen and (max-width: 1440px) {
 	
-	.number-of-players-3, .number-of-players-2, {
-		& .card, & .empty-wrapper .empty {
-			width: 5.5rem;
-	    	@include keep-ratio(5.5,2,3,rem);
-		}
-		& #playing-area {
-			padding-right:2%;
-		}
-
-		& #players-area {
-			padding-left:2%; 
-		}
-	}
-
-	.number-of-players-4 {
-		& .card, & .empty-wrapper .empty {
-			width: 5rem;
-	    	@include keep-ratio(5,2,3,rem);
-		}
-		& .cards-wrapper .card-wrapper, .empty-wrapper {
-			padding:.2rem .4rem;
-		}
-		& .player-info {
-		    font-size: 13px;
-		    height: 18px;
-		}
-		& #players-area .section {
-		    margin: 10px 10px;
+	#game {
+		& .card, & .empty-wrapper .empty, & .card-pile {
+			width: 6vw;
+	    	@include keep-ratio(6,2,3,vw);
+	    	font-size: 5vw;
 		}
 		& #hints .hint {
-			width:50px;
-			height:50px;
+			width:4vw;
+			height:4vw;
 		}
 		& .token {
-		    width: 60px;
-		    height: 60px;
-		    font-size: 25px;
+		    width: 5vw;
+		    height: 5vw;
+		    font-size: 2vw;
+		}
+		& .deck .number {
+		    width: 3vw;
+		    height: 3vw;
+		    font-size: 2vw;
+		}
+		& .symbol:after {
+			width: 2.5vw;
+			height: 2.5vw;
 		}
 	}
 	
-	.number-of-players-5 {
-		& .card, & .empty-wrapper .empty {
-			width: 4rem;
-	    	@include keep-ratio(4,2,3,rem);
-	    	font-size: 3rem;
+	#game.number-of-players-5, #game.number-of-players-4 {
+		
+		& .card, & .empty-wrapper .empty, & .card-pile {
+			width: 5vw;
+	    	@include keep-ratio(5,2,3,vw);
+	    	font-size: 4vw;
 		}
 		& .cards-wrapper .card-wrapper, .empty-wrapper {
 			padding:.1rem .4rem;
@@ -67,51 +54,21 @@
 		    margin: 10px 10px;
 		    padding:8px 5px;
 		}
-		& #hints .hint {
-			width:50px;
-			height:50px;
-		}
-		& .token {
-		    width: 50px;
-		    height: 50px;
-		    font-size: 20px;
-		}
-	}
-
-	.deck .number {
-	    width: 50px;
-	    height: 50px;
-	}
-
-}
-
-@media only screen and (max-width: 1024px) {
-	
-	#playing-area {
-			padding-right:2%;
-		}
-
- 	#players-area {
-		padding-left:2%; 
-	}
-
-	.number-of-players-4 {
-		& .card, & .empty-wrapper .empty {
-			width: 4.5rem;
-	    	@include keep-ratio(4.5,2,3,rem);
-		}
 
 	}
 	
-	.number-of-players-5 {
-		& .card, & .empty-wrapper .empty {
-			width: 3.5rem;
-	    	@include keep-ratio(3.5,2,3,rem);
-	    	font-size: 3rem;
+	#game.number-of-players-5 {
+		
+		& #players-area .section {
+		    margin: 7px 10px;
 		}
+
 	}
 
+	
 }
+
+
 // LAPTOP MDPI
 
 @media only screen and (max-width: 970px) {
@@ -123,26 +80,48 @@
 	    position: relative;
 	} 
 
-   #game {
-	  	flex-direction: column;
-	  	margin-top:100px;
-	    justify-content: flex-start;
-	    &  #playing-area, & #players-area {
-	    	width:100%;
-	    	flex-basis: 100%;
-	    	align-items: center;
-	    	margin:0;
-    	    min-height: auto;
-    	    padding:10px;
-	    }
-		& #players-area {
-		    margin-top: 20px;
-		}
+	   #game.general {
+		  	flex-direction: column;
+		  	margin-top:100px;
+		    justify-content: flex-start;
+		    & #playing-area, & #players-area {
+		    	width:100%;
+		    	flex-basis: 100%;
+		    	align-items: center;
+		    	margin:0;
+	    	    min-height: auto;
+	    	    padding:10px;
+		    }
+			& #players-area {
+			    margin-top: 20px;
+			}
+			& .card, & .empty-wrapper .empty, & .card-pile {
+				width: 10vw;
+		    	@include keep-ratio(10,2,3,vw);
+		    	font-size: 8vw;
+			}
+			& #hints .hint {
+				width:6vw;
+				height:6vw;
+			}
+			& .symbol:after {
+				width: 4vw;
+				height: 4vw;
+			}
+			& .token {
+			    width: 8vw;
+			    height: 8vw;
+			    font-size: 4vw;
+			}
+			& .deck .number {
+			    width: 6vw;
+			    height: 6vw;
+			    font-size: 4vw;
+			}
 
-	  }
-
-
-
+	  	}
+	
+	
 }
 
 // IPAD
@@ -152,7 +131,7 @@
 	    width:170px;
 	} 
 
-	#game {
+	#game.general {
 
 		& .cards-wrapper {
 		    justify-content: center;
@@ -162,20 +141,13 @@
 			margin-right:2vw;
 		}
 		
-
 		& .section {
-			// width:100%;
 			margin: 10px 0;
 			justify-content: center;
 		}
+
 		& .row {
 			flex-basis: 50%;
-		}
-
-		& .token {
-			width:50px;
-			height:50px;
-			font-size: 24px;
 		}
 
 		& .tokens.note .token {
@@ -191,13 +163,13 @@
 
 @media only screen and (max-width: 620px) {
 	
-	#game {
+	#game.general {
 
 		& .content {
 			width:100%;
 		}
 
-		& .card, .empty-wrapper .empty {
+		& .card, .empty-wrapper .empty, & .card-pile {
 			width: 15vw;
 		    @include keep-ratio(15,2,3,vw);
 		    font-size: 13vw;
@@ -242,6 +214,9 @@
 			 	cursor: grabbing;
 			}
 		}
+		& .card-pile {
+		    margin: 0px 1vw;
+		}
 
 		& #hints .hint {
 			width: 10vw;
@@ -251,7 +226,11 @@
 		    box-shadow: 0 1vw 0 #5553C0, 0 0 0 1px #5553C0;
 		    border-radius: 10%;
 		}
-
+		
+		& .symbol:after {
+			width: 6vw;
+			height: 6vw;
+		}
 	}
 
 
@@ -260,7 +239,7 @@
 
 @media only screen and (max-width: 480px) {
 
-	#game {
+	#game.general {
 		& .cards-wrapper .card-wrapper, & .empty-wrapper {
 	    	padding: .2rem;
 		}

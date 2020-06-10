@@ -6,8 +6,14 @@
   }
 }
 
+.popup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .popup-wrapper, .popup-wrapper > .background {
-  position: absolute;
+  position: fixed;
   top:0;
   left:0;
   width:100%;
@@ -23,26 +29,6 @@
     transition: all 1s ease;
 }
 
-// .popup:after {
-//     content: '';
-//     background-image: url('../img/star-bg.svg');
-//     width: 200%;
-//     height: 400%;
-//     position: absolute;
-//     background-size: 100%;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     z-index: -1;
-//     top: -150%;
-//     left: -50%;
-//     opacity: 0.4;
-//     animation-name: rotate;
-//     animation-duration: 10s;
-//     animation-iteration-count: infinite;
-//     animation-direction: forward;
-//     animation-timing-function: linear;
-//     user-select: none;
-// }
 
 .popup-wrapper > .popup {
   max-width: 500px;
@@ -50,15 +36,14 @@
   background-color: white;
   border-radius: 10px;
   z-index: 3;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  max-height: 300px;
+  min-height: 300px;
   opacity: 1;
   transition: all 1s ease;
+  justify-items: center;
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+  padding:10px;
 }
 
 .popup-wrapper .popup .popup-inner {
@@ -66,7 +51,7 @@
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: 100%;
   padding-top: 20px;
 }
 
@@ -123,6 +108,27 @@
     @include transition;
   }
 }
+
+
+#discardedCards {
+  & .popup {
+    & .content {
+      width: 100%;
+      & .row {
+        margin:5px 0;
+        & .card {
+          width: 4rem;
+          @include keep-ratio(4,2,3,rem);
+          font-size: 3rem;
+          margin:0 5px;
+        }
+      }
+    
+   }
+  }
+ 
+}
+
 
 @keyframes scale {
   0% {transform: scale(2); opacity: 0;}

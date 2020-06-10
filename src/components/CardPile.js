@@ -30,13 +30,11 @@ const CardPile = ({id, unknown, onClick, distance, className, cards, title, name
 	    return items;
 	}
 
-	const props = name && {dataTip:name}
-
 	return (
 
 		<div id={id} className={`deck${className || ''}`} onClick={onClick} data-tip={name || undefined }>
 		{title && <div className='title'>{title}</div>}
-		<div className='relative flex center'>
+		<div className='card-pile relative flex center'>
 			
 			{cards.length > 0 ? renderCards(cards.length) : <div className={`empty-wrapper`}><Empty /></div>}
 		</div>
