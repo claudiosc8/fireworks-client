@@ -1,3 +1,22 @@
+# Fireworks
+
+Fireworks is a fan-made version of <a href="https://en.wikipedia.org/wiki/Hanabi_(card_game)">Hanabi</a> card game. 
+
+The app is developed in [React](https://reactjs.org).
+Animations made with [Framer Motion](https://www.framer.com/motion/).
+
+Backend repository [here](https://github.com/claudiosc8/fireworks-server).
+
+![Game preview](./public/preview.png)
+
+**Every feedback is welcome!**
+
+### To-do list
+- Add variant of the game with the 6th "rainbow" suit
+
+
+________
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
