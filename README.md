@@ -5,6 +5,8 @@ Fireworks is a fan-made version of <a href="https://en.wikipedia.org/wiki/Hanabi
 The app is developed in [React](https://reactjs.org).
 Animations made with [Framer Motion](https://www.framer.com/motion/).
 
+A hosted version of the app is available at [claudioscotto.it/fireworks/](https://claudioscotto.it/fireworks/).
+
 Backend repository [here](https://github.com/claudiosc8/fireworks-server).
 
 ![Game preview](./public/preview.png)
